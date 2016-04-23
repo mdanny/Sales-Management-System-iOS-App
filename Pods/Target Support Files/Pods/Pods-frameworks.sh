@@ -85,11 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
-  install_framework "Pods/SwiftMongoDB.framework"
-  install_framework "Pods/mongo_c_driver.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
-  install_framework "Pods/SwiftMongoDB.framework"
-  install_framework "Pods/mongo_c_driver.framework"
 fi

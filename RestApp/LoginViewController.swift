@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftMongoDB
 
 class LoginViewController: UIViewController {
     
@@ -17,9 +17,27 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     var hashedPassword: String!
+    var resultObj: MongoResult<Array<MongoDocument>>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add DB connection here (TODO: Change the location later
+        let mongoDB = MongoDB(host: "ds019048.mlab.com", port: 19048, database: "e-commerce-course-project", usernameAndPassword: (username: "cristi", password: "qwerty123"))
+               
+        let users = MongoCollection(name: "users")
+        mongoDB.registerCollection(users)
+        
+        let cursor = try users.find()
+//        let results = try cursor.all()
+//        print(results)
+        
+//        for item in results.successValue!.enumerate() {
+//            print(item)
+//        }
+        
+//        resultObj = results
+//        print(resultObj)
         
     }
     
