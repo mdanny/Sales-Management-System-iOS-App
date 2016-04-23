@@ -174,23 +174,34 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
   
     @IBAction func buttonTapped(sender: UIButton) {
         
-        let jsonString = self.infoString
-//        print("infoString to be serialized: \(jsonString)")
-        let json: AnyObject? = jsonString.parseJSONString
-        let parsedJSON = json! as! NSDictionary
-//        print("parsed JSON: \(parsedJSON.valueForKey("name") as! NSString)")
+        if !self.infoString.isEmpty {
+            
+            let jsonString = self.infoString
+            //        print("infoString to be serialized: \(jsonString)")
+            let json: AnyObject? = jsonString.parseJSONString
+            let parsedJSON = json! as! NSDictionary
+            //        print("parsed JSON: \(parsedJSON.valueForKey("name") as! NSString)")
+            
+            // Define the constants for API POST request
+            self.apiName = parsedJSON.valueForKey("name") as? NSString
+            self.apiCategory = parsedJSON.valueForKey("category") as? NSString
+            self.apiBrand = parsedJSON.valueForKey("brand") as? NSString
+            self.apiSupermarket = parsedJSON.valueForKey("supermarket") as? NSString
+            self.apiDescription = parsedJSON.valueForKey("description") as? NSString
+            self.apiPrice = parsedJSON.valueForKey("price") as? NSString
+            
+            let alertControllerSuccess = UIAlertController(title: "Cart", message:"Your item is: \(parsedJSON)\n" , preferredStyle: .Alert)
+            alertControllerSuccess.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
+            presentViewController(alertControllerSuccess, animated: true, completion: nil)
+        }
+        else {
+            
+            let alertControllerFailure = UIAlertController(title: "Cart", message:"Your item is:  \n You have no items in the cart." , preferredStyle: .Alert)
+            alertControllerFailure.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
+            presentViewController(alertControllerFailure, animated: true, completion: nil)
+        }
         
-        // Define the constants for API POST request
-        self.apiName = parsedJSON.valueForKey("name") as? NSString
-        self.apiCategory = parsedJSON.valueForKey("category") as? NSString
-        self.apiBrand = parsedJSON.valueForKey("brand") as? NSString
-        self.apiSupermarket = parsedJSON.valueForKey("supermarket") as? NSString
-        self.apiDescription = parsedJSON.valueForKey("description") as? NSString
-        self.apiPrice = parsedJSON.valueForKey("price") as? NSString
         
-        let ac = UIAlertController(title: "Cart", message:"Your item is: \(self.infoString)\n" , preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
-        presentViewController(ac, animated: true, completion: nil)
         
     }
     
@@ -204,11 +215,11 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     
     @IBAction func postButtonTapped(sender: UIButton) {
         
-        self.performSegueWithIdentifier("DetailSegue", sender: self)
+        self.performSegueWithIdentifier("ShowAddViewSegue", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "DetailSegue" {
+        if segue.identifier == "ShowAddViewSegue" {
             let addViewController = segue.destinationViewController as! AddViewController
             
             addViewController.apiName = self.apiName

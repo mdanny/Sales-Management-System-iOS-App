@@ -16,6 +16,8 @@
 		EA1342F21CC8EF3F0063B91C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F11CC8EF3F0063B91C /* AddViewController.swift */; };
 		EA1342F41CC8FEC30063B91C /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F31CC8FEC30063B91C /* QRViewController.swift */; };
 		EA1342F61CCB963C0063B91C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F51CCB963C0063B91C /* LoginViewController.swift */; };
+		EA1342FA1CCBB5880063B91C /* JKBCrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F81CCBB5880063B91C /* JKBCrypt.swift */; };
+		EA1342FB1CCBB5880063B91C /* JKBCryptRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F91CCBB5880063B91C /* JKBCryptRandom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		EA1342F11CC8EF3F0063B91C /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		EA1342F31CC8FEC30063B91C /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		EA1342F51CCB963C0063B91C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EA1342F81CCBB5880063B91C /* JKBCrypt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKBCrypt.swift; sourceTree = "<group>"; };
+		EA1342F91CCBB5880063B91C /* JKBCryptRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JKBCryptRandom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 		EA1342DC1CC8150A0063B91C /* RestApp */ = {
 			isa = PBXGroup;
 			children = (
+				EA1342F71CCBB5880063B91C /* lib */,
 				EA1342F11CC8EF3F0063B91C /* AddViewController.swift */,
 				EA1342F51CCB963C0063B91C /* LoginViewController.swift */,
 				EA1342F31CC8FEC30063B91C /* QRViewController.swift */,
@@ -95,6 +100,15 @@
 				EA1342E91CC8150A0063B91C /* Info.plist */,
 			);
 			path = RestApp;
+			sourceTree = "<group>";
+		};
+		EA1342F71CCBB5880063B91C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				EA1342F81CCBB5880063B91C /* JKBCrypt.swift */,
+				EA1342F91CCBB5880063B91C /* JKBCryptRandom.swift */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +234,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA1342FA1CCBB5880063B91C /* JKBCrypt.swift in Sources */,
+				EA1342FB1CCBB5880063B91C /* JKBCryptRandom.swift in Sources */,
 				EA1342E01CC8150A0063B91C /* ViewController.swift in Sources */,
 				EA1342DE1CC8150A0063B91C /* AppDelegate.swift in Sources */,
 				EA1342F21CC8EF3F0063B91C /* AddViewController.swift in Sources */,
