@@ -21,22 +21,6 @@ class AddViewController: UIViewController {
     var apiDescription: NSString?
     var apiPrice: NSString?
 
-    //    var objQR: QRViewController?
-//    
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        objQR = QRViewController() // create the QRViewController instance
-//    }
-    
-    
-//    @IBAction func buttonTapped(sender: UIButton) {
-//        
-//        self.textView.text = objQR?.infoString
-//        
-//        Alamofire.request(.POST, "https://calm-forest-61690.herokuapp.com/todo", parameters: ["name": self.textView.text!])
-//        self.navigationController!.popViewControllerAnimated(true)
-//    }
 
     @IBAction func buttonTapped(sender: UIButton) {
         print("Name: \(self.apiName)")

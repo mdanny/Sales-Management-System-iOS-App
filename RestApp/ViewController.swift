@@ -66,7 +66,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Ensure that the tableview updates after we add another item
     func downloadAndUpdate() {
         
-        // Refactoring (to delete the already populated cells
+        // Refactoring (to delete the already populated cells)
         self.newArray.removeAll()
         self.idArray.removeAll()
         

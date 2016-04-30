@@ -105,10 +105,18 @@
 		EA1342F71CCBB5880063B91C /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				EA6F8AEF1CCCC1A0000C57B1 /* bcrypt */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		EA6F8AEF1CCCC1A0000C57B1 /* bcrypt */ = {
+			isa = PBXGroup;
+			children = (
 				EA1342F81CCBB5880063B91C /* JKBCrypt.swift */,
 				EA1342F91CCBB5880063B91C /* JKBCryptRandom.swift */,
 			);
-			path = lib;
+			name = bcrypt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

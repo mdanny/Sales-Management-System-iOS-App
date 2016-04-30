@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import SwiftMongoDB
+import Alamofire
+
 
 class LoginViewController: UIViewController {
     
@@ -17,28 +18,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     var hashedPassword: String!
-    var resultObj: MongoResult<Array<MongoDocument>>?
+    var responseContainer: NSHTTPURLResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Add DB connection here (TODO: Change the location later
-        let mongoDB = MongoDB(host: "ds019048.mlab.com", port: 19048, database: "e-commerce-course-project", usernameAndPassword: (username: "cristi", password: "qwerty123"))
-               
-        let users = MongoCollection(name: "users")
-        mongoDB.registerCollection(users)
-        
-        let cursor = try users.find()
-//        let results = try cursor.all()
-//        print(results)
-        
-//        for item in results.successValue!.enumerate() {
-//            print(item)
-//        }
-        
-//        resultObj = results
-//        print(resultObj)
-        
     }
     
     func generateSalt() -> String {
@@ -64,6 +47,8 @@ class LoginViewController: UIViewController {
         let email = self.emailTextField.text!
         let password = self.passwordTextField.text!
         
+        //Hashing part (not needed for now)
+        
         if let hash = JKBCrypt.hashPassword(password, withSalt: self.generateSalt()) {
             self.hashedPassword = hash
         }
@@ -88,6 +73,27 @@ class LoginViewController: UIViewController {
         let alertController = UIAlertController(title: "Credentials", message:"Your email is: \(email)\n Your password is: \(password) \n Your hashed password + salt is: \(self.hashedPassword)" , preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Continue", style: .Default, handler: nil))
         presentViewController(alertController, animated: true, completion: nil)
+        
+        Alamofire.request(.POST, "http://46.101.104.55:3000/login", parameters: ["email" : email, "password": password]).responseJSON {
+            response in
+
+            if let JSON = response.response {
+                self.responseContainer = JSON
+                print("RESPONSE OBJECT: \n")
+                print(self.responseContainer)
+                print("URL:\n")
+                print(self.responseContainer!.URL!)
+            
+                if String(self.responseContainer!.URL!) == "http://46.101.104.55:3000/profile" {
+                    print("Authentication validated!")
+                    self.performSegueWithIdentifier("ShowViewSegue", sender: self)
+                    
+                }
+                else {
+                    print("Authentication failed!")
+                }
+            }
+        }
         
     }
     
