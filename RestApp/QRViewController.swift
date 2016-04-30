@@ -6,12 +6,10 @@
 //  Copyright © 2016 Daniel Macrinici. All rights reserved.
 //
 
-//import Cocoa
-
 import UIKit
 import AVFoundation
 
-//Create extension for parsing Jvar string to Object
+//Create extension for parsing JSON string to Object
 
 extension String {
     
@@ -54,8 +52,6 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     @IBOutlet weak var buttonLabel: UIButton!
     @IBOutlet weak var postButton: UIButton!
     
-    
-    
     //declare the variables
     var objCaptureSession: AVCaptureSession?
     var objCaptureVideoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -80,11 +76,6 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         self.initializeQRView()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // In the following func we use AVCaptureDevice class to initialize a device object and provide the video as the media type parameter
     func configureVideoCapture() {
         
@@ -94,7 +85,6 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         let objCaptureDeviceInput: AnyObject!
         
         do {
-            
             objCaptureDeviceInput = try AVCaptureDeviceInput(device: objCaptureDevice) as AVCaptureDeviceInput
         }
             
@@ -104,7 +94,6 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         }
         
         if (error != nil) {
-            
             let alertController: UIAlertController = UIAlertController(title: "Device Error", message: "Device not supported for this application", preferredStyle: .Alert)
             
             let cancelAction: UIAlertAction = UIAlertAction(title: "Ok Done", style: .Cancel, handler: {(alertAction) -> Void in alertController.dismissViewControllerAnimated(true, completion: nil)
@@ -121,12 +110,10 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         objCaptureSession?.addOutput(objCaptureMetadataOutput)
         objCaptureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
         objCaptureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
-        
     }
     
     
     func addVideoPreviewLayer() {
-        
         objCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: objCaptureSession)
         objCaptureVideoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
         objCaptureVideoPreviewLayer?.frame = view.layer.bounds
@@ -141,7 +128,6 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     }
     
     func initializeQRView() {
-        
         vwQRCode = UIView()
         vwQRCode?.layer.borderColor = UIColor.redColor().CGColor
         vwQRCode?.layer.borderWidth = 5
@@ -173,14 +159,10 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     
   
     @IBAction func buttonTapped(sender: UIButton) {
-        
         if !self.infoString.isEmpty {
-            
             let jsonString = self.infoString
-            //        print("infoString to be serialized: \(jsonString)")
             let json: AnyObject? = jsonString.parseJSONString
             let parsedJSON = json! as! NSDictionary
-            //        print("parsed JSON: \(parsedJSON.valueForKey("name") as! NSString)")
             
             // Define the constants for API POST request
             self.apiName = parsedJSON.valueForKey("name") as? NSString
@@ -195,26 +177,19 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
             presentViewController(alertControllerSuccess, animated: true, completion: nil)
         }
         else {
-            
             let alertControllerFailure = UIAlertController(title: "Cart", message:"Your item is:  \n You have no items in the cart." , preferredStyle: .Alert)
             alertControllerFailure.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
             presentViewController(alertControllerFailure, animated: true, completion: nil)
         }
-        
-        
-        
     }
     
     func continueScanning(action: UIAlertAction! = nil) {
-        
         // Clear infoString after parsing it
         self.infoString = ""
         objCaptureSession?.startRunning()
     }
     
-    
     @IBAction func postButtonTapped(sender: UIButton) {
-        
         self.performSegueWithIdentifier("ShowAddViewSegue", sender: self)
     }
     
