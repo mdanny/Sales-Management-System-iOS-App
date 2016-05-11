@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
         let email = self.emailTextField.text!
         let password = self.passwordTextField.text!
         
-        Alamofire.request(.POST, "http://46.101.104.55:3000/login", parameters: ["email" : email, "password": password]).responseJSON {
+        Alamofire.request(.POST, "http://46.101.104.55:3000/login_ios", parameters: ["email" : email, "password": password]).responseJSON {
             response in
 
             if let JSON = response.response {
@@ -38,8 +38,10 @@ class LoginViewController: UIViewController {
                 print(self.responseContainer)
                 print("URL:\n")
                 print(self.responseContainer!.URL!)
+                print("This is the URL response value",response.result.value)
+                print("This is the URL response value",response.result.description)
             
-                if String(self.responseContainer!.URL!) == "http://46.101.104.55:3000/profile" {
+                if String(self.responseContainer!.URL!) == "http://46.101.104.55:3000/profile_ios" {
                     print("Authentication validated!")
                     self.performSegueWithIdentifier("ShowViewSegue", sender: self)
                 }

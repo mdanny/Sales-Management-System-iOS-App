@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Alamofire
 
 //Create extension for parsing JSON string to Object
 
@@ -177,6 +178,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
             presentViewController(alertControllerSuccess, animated: true, completion: nil)
         }
         else {
+            Alamofire.request(.GET, "http://46.101.104.55:3000/cart")
             let alertControllerFailure = UIAlertController(title: "Cart", message:"Your item is:  \n You have no items in the cart." , preferredStyle: .Alert)
             alertControllerFailure.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
             presentViewController(alertControllerFailure, animated: true, completion: nil)

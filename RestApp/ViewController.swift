@@ -70,10 +70,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         Alamofire.request(.GET, "http://46.101.104.55:3000/products_ios/\(self.apiCategoryIndex[6])").responseJSON {
             response in
             //print(response.request) // original URL request
-            //print(response.response) // URL response
+            print("This is the products_ios URL response",response.response) // URL response
             //print(response.data) // server data
-            print(response.result) // result of response serialization
-            
+            print("This is the products_ios response result: ",response.result) // result of response serialization
+//            print("This is the URL response value",response.result.value)
             if let JSON = response.result.value {
                 
                 self.jsonArray = JSON as? NSMutableArray

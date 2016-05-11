@@ -16,6 +16,7 @@
 		EA1342F21CC8EF3F0063B91C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F11CC8EF3F0063B91C /* AddViewController.swift */; };
 		EA1342F41CC8FEC30063B91C /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F31CC8FEC30063B91C /* QRViewController.swift */; };
 		EA1342F61CCB963C0063B91C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F51CCB963C0063B91C /* LoginViewController.swift */; };
+		EAA00C201CD5E42E00323194 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA00C1F1CD5E42E00323194 /* PayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		EA1342F11CC8EF3F0063B91C /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		EA1342F31CC8FEC30063B91C /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		EA1342F51CCB963C0063B91C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EAA00C1E1CD5D2A300323194 /* RestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RestApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		EAA00C1F1CD5E42E00323194 /* PayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,10 +89,12 @@
 			children = (
 				EA1342F11CC8EF3F0063B91C /* AddViewController.swift */,
 				EA1342F51CCB963C0063B91C /* LoginViewController.swift */,
+				EAA00C1E1CD5D2A300323194 /* RestApp-Bridging-Header.h */,
 				EA1342F31CC8FEC30063B91C /* QRViewController.swift */,
 				EA1342DD1CC8150A0063B91C /* AppDelegate.swift */,
 				EA1342DF1CC8150A0063B91C /* ViewController.swift */,
 				EA1342E11CC8150A0063B91C /* Main.storyboard */,
+				EAA00C1F1CD5E42E00323194 /* PayViewController.swift */,
 				EA1342E41CC8150A0063B91C /* Assets.xcassets */,
 				EA1342E61CC8150A0063B91C /* LaunchScreen.storyboard */,
 				EA1342E91CC8150A0063B91C /* Info.plist */,
@@ -221,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA1342E01CC8150A0063B91C /* ViewController.swift in Sources */,
+				EAA00C201CD5E42E00323194 /* PayViewController.swift in Sources */,
 				EA1342DE1CC8150A0063B91C /* AppDelegate.swift in Sources */,
 				EA1342F21CC8EF3F0063B91C /* AddViewController.swift in Sources */,
 				EA1342F61CCB963C0063B91C /* LoginViewController.swift in Sources */,
@@ -342,6 +348,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.macrinicid.RestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[sdk=iphoneos*]" = "RestApp/RestApp-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -354,6 +361,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.macrinicid.RestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[sdk=iphoneos*]" = "RestApp/RestApp-Bridging-Header.h";
 			};
 			name = Release;
 		};
