@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     var responseContainer: NSHTTPURLResponse?
+    var accountData: AnyObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +40,14 @@ class LoginViewController: UIViewController {
                 print("URL:\n")
                 print(self.responseContainer!.URL!)
                 print("This is the URL response value",response.result.value)
-                print("This is the URL response value",response.result.description)
+                self.accountData = response.result.value
+                print(self.accountData!["profile"]!!["name"])
+                print(self.accountData!["profile"]!!["picture"])
+//                print("This is the URL response value",response.result.description)
             
                 if String(self.responseContainer!.URL!) == "http://46.101.104.55:3000/profile_ios" {
                     print("Authentication validated!")
-                    self.performSegueWithIdentifier("ShowViewSegue", sender: self)
+                    self.performSegueWithIdentifier("ShowProfileViewSegue", sender: self)
                 }
                 else {
                     print("Authentication failed!")
@@ -51,6 +55,16 @@ class LoginViewController: UIViewController {
             }
         }
         
+    }
+    
+    //pass accountData associated with a particular user to the profile VC in an objectx
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowProfileViewSegue" {
+            let nav = segue.destinationViewController as! UINavigationController
+            let pvc = nav.topViewController as! ProfileViewController
+            
+            pvc.user = self.accountData!
+        }
     }
 
 }
