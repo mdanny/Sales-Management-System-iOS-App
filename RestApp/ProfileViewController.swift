@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var barButtonItem: UIBarButtonItem!
+    @IBOutlet weak var collectionView: UIView!
+    
     
     var user: AnyObject?
     
@@ -24,6 +26,9 @@ class ProfileViewController: UIViewController {
         self.nameLabel.text = self.user!["profile"]!!["name"] as? String
         self.emailLabel.text = self.user!["email"]! as? String
         self.fetchGravatar()
+//        let mainController : CollectionViewController = CollectionViewController(nibName: "CollectionViewController", bundle: nil)
+//        self.collectionView = mainController.view
+        
        
         
     }
@@ -56,7 +61,6 @@ class ProfileViewController: UIViewController {
                     self.imgView.layer.borderWidth = 1
                     self.imgView.layer.borderColor = UIColor.blueColor().CGColor
                     self.imgView.clipsToBounds = true
-                    //self.view.addSubview(self.imgView)
                 }
             }
         }

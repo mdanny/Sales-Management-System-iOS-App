@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		E97FA393E3E49E21A4F69137 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D525053F9642015E740BCB /* Pods.framework */; };
+		EA0B980B1CE532A10034E3A7 /* ContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0B980A1CE532A10034E3A7 /* ContentCollectionViewCell.swift */; };
+		EA0B980D1CE5335B0034E3A7 /* ContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0B980C1CE5335B0034E3A7 /* ContentCollectionViewCell.xib */; };
+		EA0B980F1CE533E20034E3A7 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0B980E1CE533E20034E3A7 /* DateCollectionViewCell.swift */; };
+		EA0B98111CE534120034E3A7 /* DateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0B98101CE534120034E3A7 /* DateCollectionViewCell.xib */; };
+		EA0B98161CE5350C0034E3A7 /* CustomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0B98151CE5350C0034E3A7 /* CustomCollectionViewLayout.swift */; };
+		EA0B98191CE535DC0034E3A7 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0B98181CE535DC0034E3A7 /* CollectionViewController.swift */; };
+		EA0B981B1CE5361C0034E3A7 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0B981A1CE5361C0034E3A7 /* CollectionViewController.xib */; };
 		EA1342DE1CC8150A0063B91C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342DD1CC8150A0063B91C /* AppDelegate.swift */; };
 		EA1342E01CC8150A0063B91C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342DF1CC8150A0063B91C /* ViewController.swift */; };
 		EA1342E31CC8150A0063B91C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA1342E11CC8150A0063B91C /* Main.storyboard */; };
@@ -24,6 +31,13 @@
 		18BFBD1AD226B52F060A1706 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A6D525053F9642015E740BCB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF00CB7079C2BBC9B932E6B8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		EA0B980A1CE532A10034E3A7 /* ContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		EA0B980C1CE5335B0034E3A7 /* ContentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentCollectionViewCell.xib; sourceTree = "<group>"; };
+		EA0B980E1CE533E20034E3A7 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		EA0B98101CE534120034E3A7 /* DateCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateCollectionViewCell.xib; sourceTree = "<group>"; };
+		EA0B98151CE5350C0034E3A7 /* CustomCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewLayout.swift; sourceTree = "<group>"; };
+		EA0B98181CE535DC0034E3A7 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		EA0B981A1CE5361C0034E3A7 /* CollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
 		EA1342DA1CC8150A0063B91C /* RestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA1342DD1CC8150A0063B91C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA1342DF1CC8150A0063B91C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +82,50 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EA0B98121CE5345D0034E3A7 /* Content Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B980C1CE5335B0034E3A7 /* ContentCollectionViewCell.xib */,
+				EA0B980A1CE532A10034E3A7 /* ContentCollectionViewCell.swift */,
+			);
+			name = "Content Cell";
+			sourceTree = "<group>";
+		};
+		EA0B98131CE5348C0034E3A7 /* Date Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B98101CE534120034E3A7 /* DateCollectionViewCell.xib */,
+				EA0B980E1CE533E20034E3A7 /* DateCollectionViewCell.swift */,
+			);
+			name = "Date Cell";
+			sourceTree = "<group>";
+		};
+		EA0B98141CE5349A0034E3A7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B98131CE5348C0034E3A7 /* Date Cell */,
+				EA0B98121CE5345D0034E3A7 /* Content Cell */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		EA0B98171CE535A10034E3A7 /* CustomCollectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B98151CE5350C0034E3A7 /* CustomCollectionViewLayout.swift */,
+			);
+			name = CustomCollectionViewLayout;
+			sourceTree = "<group>";
+		};
+		EA0B981C1CE536290034E3A7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B981A1CE5361C0034E3A7 /* CollectionViewController.xib */,
+				EA0B98181CE535DC0034E3A7 /* CollectionViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		EA1342D11CC8150A0063B91C = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +147,9 @@
 		EA1342DC1CC8150A0063B91C /* RestApp */ = {
 			isa = PBXGroup;
 			children = (
+				EA0B981C1CE536290034E3A7 /* Controllers */,
+				EA0B98171CE535A10034E3A7 /* CustomCollectionViewLayout */,
+				EA0B98141CE5349A0034E3A7 /* Views */,
 				EA1342F11CC8EF3F0063B91C /* AddViewController.swift */,
 				EA1342F51CCB963C0063B91C /* LoginViewController.swift */,
 				EAA00C1E1CD5D2A300323194 /* RestApp-Bridging-Header.h */,
@@ -167,8 +228,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0B981B1CE5361C0034E3A7 /* CollectionViewController.xib in Resources */,
+				EA0B980D1CE5335B0034E3A7 /* ContentCollectionViewCell.xib in Resources */,
 				EA1342E81CC8150A0063B91C /* LaunchScreen.storyboard in Resources */,
 				EA1342E51CC8150A0063B91C /* Assets.xcassets in Resources */,
+				EA0B98111CE534120034E3A7 /* DateCollectionViewCell.xib in Resources */,
 				EA1342E31CC8150A0063B91C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,9 +296,13 @@
 				EAA00C201CD5E42E00323194 /* PayViewController.swift in Sources */,
 				EA1342DE1CC8150A0063B91C /* AppDelegate.swift in Sources */,
 				EA84B5D61CE3BB66001967AF /* ProfileViewController.swift in Sources */,
+				EA0B980B1CE532A10034E3A7 /* ContentCollectionViewCell.swift in Sources */,
 				EA1342F21CC8EF3F0063B91C /* AddViewController.swift in Sources */,
 				EA1342F61CCB963C0063B91C /* LoginViewController.swift in Sources */,
+				EA0B980F1CE533E20034E3A7 /* DateCollectionViewCell.swift in Sources */,
+				EA0B98161CE5350C0034E3A7 /* CustomCollectionViewLayout.swift in Sources */,
 				EA1342F41CC8FEC30063B91C /* QRViewController.swift in Sources */,
+				EA0B98191CE535DC0034E3A7 /* CollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

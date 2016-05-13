@@ -296,26 +296,12 @@
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="One-D4-ekX">
-                                <rect key="frame" x="20" y="316" width="280" height="226"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nch-tF-e1a">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="T7n-Oy-RJp">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWz-CU-L1U">
+                                <rect key="frame" x="40" y="292" width="240" height="236"/>
+                                <connections>
+                                    <segue destination="PMq-Ri-QJm" kind="embed" id="S6h-bX-awW"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -330,6 +316,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="barButtonItem" destination="MYs-SK-33F" id="y80-cb-UKj"/>
+                        <outlet property="collectionView" destination="qWz-CU-L1U" id="m7V-ak-lmy"/>
                         <outlet property="emailLabel" destination="v0M-gR-Kj6" id="thn-aQ-rJV"/>
                         <outlet property="imgView" destination="5s2-XK-jcA" id="ngk-Lh-wai"/>
                         <outlet property="nameLabel" destination="AV2-gx-j1M" id="I5M-ef-mGl"/>
@@ -534,6 +521,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ie0-1D-tov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="842" y="414"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="Vis-WA-EL8">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zGl-aW-Ams" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="PMq-Ri-QJm" customClass="CollectionViewController" customModule="RestApp" customModuleProvider="target" sceneMemberID="viewController"/>
+            </objects>
+            <point key="canvasLocation" x="1595" y="954"/>
         </scene>
     </scenes>
     <resources>
