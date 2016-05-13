@@ -18,19 +18,25 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var barButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UIView!
     
-    
     var user: AnyObject?
+    var productNames: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameLabel.text = self.user!["profile"]!!["name"] as? String
         self.emailLabel.text = self.user!["email"]! as? String
         self.fetchGravatar()
-//        let mainController : CollectionViewController = CollectionViewController(nibName: "CollectionViewController", bundle: nil)
-//        self.collectionView = mainController.view
         
-       
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let tuple = user!["history"]!! as! NSArray
         
+//        for idx in 0..<tuple.count {
+//            var elem = tuple[idx]["item"]!!["name"] as! String
+//            productNames.append(elem)
+//        }
+        
+//        print("This is the TUPLE CONVERTED TO DICTIONARY!!!!", productNames)
+        userDefaults.setObject(tuple, forKey: "userProfile")
     }
     
     func scaleUIImageToSize(let image: UIImage, let size: CGSize) -> UIImage {

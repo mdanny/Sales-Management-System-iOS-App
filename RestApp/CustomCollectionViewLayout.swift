@@ -10,7 +10,7 @@ import UIKit
 
 class CustomCollectionViewLayout: UICollectionViewLayout {
     
-    let numberOfColumns = 8
+    let numberOfColumns = 4
     var itemAttributes : NSMutableArray!
     var itemsSize : NSMutableArray!
     var contentSize : CGSize!

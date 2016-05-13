@@ -40,17 +40,19 @@ class LoginViewController: UIViewController {
                 print("URL:\n")
                 print(self.responseContainer!.URL!)
                 print("This is the URL response value",response.result.value)
-                self.accountData = response.result.value
-                print(self.accountData!["profile"]!!["name"])
-                print(self.accountData!["profile"]!!["picture"])
-//                print("This is the URL response value",response.result.description)
-            
-                if String(self.responseContainer!.URL!) == "http://46.101.104.55:3000/profile_ios" {
-                    print("Authentication validated!")
-                    self.performSegueWithIdentifier("ShowProfileViewSegue", sender: self)
-                }
-                else {
-                    print("Authentication failed!")
+                if let result = response.result.value {
+                    self.accountData = result
+                    print(self.accountData!["profile"]!!["name"])
+                    print(self.accountData!["profile"]!!["picture"])
+                    //                print("This is the URL response value",response.result.description)
+                    
+                    if String(self.responseContainer!.URL!) == "http://46.101.104.55:3000/profile_ios" {
+                        print("Authentication validated!")
+                        self.performSegueWithIdentifier("ShowProfileViewSegue", sender: self)
+                    }
+                    else {
+                        print("Authentication failed!")
+                    }
                 }
             }
         }

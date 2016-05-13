@@ -26,12 +26,12 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     // MARK - UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 50
+        return 7
     }
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return 4
     }
     
     
@@ -43,14 +43,31 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
                 dateCell.backgroundColor = UIColor.whiteColor()
                 dateCell.dateLabel.font = UIFont.systemFontOfSize(13)
                 dateCell.dateLabel.textColor = UIColor.blackColor()
-                dateCell.dateLabel.text = "Date"
+                dateCell.dateLabel.text = "Item's Name"
                 
                 return dateCell
-            } else {
+            }
+            
+            else if indexPath.row == 1 {
+                    let contentCell : ContentCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(contentCellIdentifier, forIndexPath: indexPath) as! ContentCollectionViewCell
+                    contentCell.contentLabel.font = UIFont.systemFontOfSize(13)
+                    contentCell.contentLabel.textColor = UIColor.blackColor()
+                    contentCell.contentLabel.text = "Brand"
+                    
+                    if indexPath.section % 2 != 0 {
+                        contentCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
+                    } else {
+                        contentCell.backgroundColor = UIColor.whiteColor()
+                    }
+                    
+                    return contentCell
+                }
+                
+            else if indexPath.row == 2 {
                 let contentCell : ContentCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(contentCellIdentifier, forIndexPath: indexPath) as! ContentCollectionViewCell
                 contentCell.contentLabel.font = UIFont.systemFontOfSize(13)
                 contentCell.contentLabel.textColor = UIColor.blackColor()
-                contentCell.contentLabel.text = "Section"
+                contentCell.contentLabel.text = "Paid"
                 
                 if indexPath.section % 2 != 0 {
                     contentCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
@@ -60,12 +77,32 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
                 
                 return contentCell
             }
-        } else {
+            
+            
+            else {
+                let contentCell : ContentCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(contentCellIdentifier, forIndexPath: indexPath) as! ContentCollectionViewCell
+                contentCell.contentLabel.font = UIFont.systemFontOfSize(13)
+                contentCell.contentLabel.textColor = UIColor.blackColor()
+                contentCell.contentLabel.text = "Supermarket"
+                
+                if indexPath.section % 2 != 0 {
+                    contentCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
+                } else {
+                    contentCell.backgroundColor = UIColor.whiteColor()
+                }
+                
+                return contentCell
+            }
+        }
+        
+        else {
             if indexPath.row == 0 {
                 let dateCell : DateCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(dateCellIdentifier, forIndexPath: indexPath) as! DateCollectionViewCell
                 dateCell.dateLabel.font = UIFont.systemFontOfSize(13)
                 dateCell.dateLabel.textColor = UIColor.blackColor()
-                dateCell.dateLabel.text = String(indexPath.section)
+
+                let productsArray = self.fetchProductNames()
+                dateCell.dateLabel.text = productsArray[0]
                 if indexPath.section % 2 != 0 {
                     dateCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
                 } else {
@@ -87,6 +124,17 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
                 return contentCell
             }
         }
+    }
+    
+    func fetchProductNames() -> [String] {
+        var productNames: [String] = []
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let result = userDefaults.objectForKey("userProfile")
+        for idx in 0..<result!.count {
+            let elem = result![idx]["item"]!!["name"] as! String
+            productNames.append(elem)
+        }
+        return productNames
     }
 }
 
