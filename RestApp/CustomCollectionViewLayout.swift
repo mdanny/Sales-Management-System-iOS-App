@@ -150,16 +150,8 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
             text = "Col 1"
         case 2:
             text = "Col 2"
-        case 3:
-            text = "Col 3"
-        case 4:
-            text = "Col 4"
-        case 5:
-            text = "Col 5"
-        case 6:
-            text = "Col 6"
         default:
-            text = "Col 7"
+            text = "Col 3"
         }
         
         let size : CGSize = (text as NSString).sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(17.0)])

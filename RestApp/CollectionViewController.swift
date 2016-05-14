@@ -13,7 +13,19 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     let contentCellIdentifier = "ContentCellIdentifier"
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    private var indexP: NSIndexPath?
+    private var productsArray: [String] {
+        return CollectionViewController.fetchProductNames()
+    }
+    private var brandsArray: [String] {
+        return CollectionViewController.fetchProductBrands()
+    }
+    private var pricesArray: [Int] {
+        return CollectionViewController.fetchProductPrices()
+    }
+    private var supermarketsArray: [String] {
+        return CollectionViewController.fetchProductSupermarkets()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +38,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     // MARK - UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 7
+        return productsArray.count
     }
     
     
@@ -39,94 +51,55 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                let dateCell : DateCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(dateCellIdentifier, forIndexPath: indexPath) as! DateCollectionViewCell
-                dateCell.backgroundColor = UIColor.whiteColor()
-                dateCell.dateLabel.font = UIFont.systemFontOfSize(13)
-                dateCell.dateLabel.textColor = UIColor.blackColor()
-                dateCell.dateLabel.text = "Item's Name"
-                
-                return dateCell
+                let cell = self.dateCellGenerator("Item's Name", cellForItemAtIndexPath: indexPath)
+                return cell
             }
             
             else if indexPath.row == 1 {
-                    let contentCell : ContentCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(contentCellIdentifier, forIndexPath: indexPath) as! ContentCollectionViewCell
-                    contentCell.contentLabel.font = UIFont.systemFontOfSize(13)
-                    contentCell.contentLabel.textColor = UIColor.blackColor()
-                    contentCell.contentLabel.text = "Brand"
-                    
-                    if indexPath.section % 2 != 0 {
-                        contentCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
-                    } else {
-                        contentCell.backgroundColor = UIColor.whiteColor()
-                    }
-                    
-                    return contentCell
-                }
+                let cell = self.contentCellGenerator("Brand", cellForItemAtIndexPath: indexPath)
+                return cell
+                
+            }
                 
             else if indexPath.row == 2 {
-                let contentCell : ContentCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(contentCellIdentifier, forIndexPath: indexPath) as! ContentCollectionViewCell
-                contentCell.contentLabel.font = UIFont.systemFontOfSize(13)
-                contentCell.contentLabel.textColor = UIColor.blackColor()
-                contentCell.contentLabel.text = "Paid"
-                
-                if indexPath.section % 2 != 0 {
-                    contentCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
-                } else {
-                    contentCell.backgroundColor = UIColor.whiteColor()
-                }
-                
-                return contentCell
+                let cell = self.contentCellGenerator("Paid", cellForItemAtIndexPath: indexPath)
+                return cell
             }
             
             
             else {
-                let contentCell : ContentCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(contentCellIdentifier, forIndexPath: indexPath) as! ContentCollectionViewCell
-                contentCell.contentLabel.font = UIFont.systemFontOfSize(13)
-                contentCell.contentLabel.textColor = UIColor.blackColor()
-                contentCell.contentLabel.text = "Supermarket"
-                
-                if indexPath.section % 2 != 0 {
-                    contentCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
-                } else {
-                    contentCell.backgroundColor = UIColor.whiteColor()
-                }
-                
-                return contentCell
+                let cell = self.contentCellGenerator("Supermarket", cellForItemAtIndexPath: indexPath)
+                return cell
             }
         }
         
         else {
             if indexPath.row == 0 {
-                let dateCell : DateCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(dateCellIdentifier, forIndexPath: indexPath) as! DateCollectionViewCell
-                dateCell.dateLabel.font = UIFont.systemFontOfSize(13)
-                dateCell.dateLabel.textColor = UIColor.blackColor()
-
-                let productsArray = self.fetchProductNames()
-                dateCell.dateLabel.text = productsArray[0]
-                if indexPath.section % 2 != 0 {
-                    dateCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
-                } else {
-                    dateCell.backgroundColor = UIColor.whiteColor()
-                }
+                let cell = self.dateCellGenerator(productsArray[indexPath.section - 1], cellForItemAtIndexPath: indexPath)
                 
-                return dateCell
-            } else {
-                let contentCell : ContentCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(contentCellIdentifier, forIndexPath: indexPath) as! ContentCollectionViewCell
-                contentCell.contentLabel.font = UIFont.systemFontOfSize(13)
-                contentCell.contentLabel.textColor = UIColor.blackColor()
-                contentCell.contentLabel.text = "Content"
-                if indexPath.section % 2 != 0 {
-                    contentCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
-                } else {
-                    contentCell.backgroundColor = UIColor.whiteColor()
-                }
+                return cell
+            }
                 
-                return contentCell
+            else if indexPath.row == 1 {
+                let cell = self.contentCellGenerator(brandsArray[indexPath.section - 1], cellForItemAtIndexPath: indexPath)
+                
+                return cell
+            }
+            
+            else if indexPath.row == 2 {
+                let cell = self.contentCellGenerator(String(pricesArray[indexPath.section - 1]), cellForItemAtIndexPath: indexPath)
+                
+                return cell
+            }
+                
+            else {
+                let cell = contentCellGenerator(supermarketsArray[indexPath.section - 1], cellForItemAtIndexPath: indexPath)
+                return cell
             }
         }
     }
     
-    func fetchProductNames() -> [String] {
+   static func fetchProductNames() -> [String] {
         var productNames: [String] = []
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let result = userDefaults.objectForKey("userProfile")
@@ -135,6 +108,68 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             productNames.append(elem)
         }
         return productNames
+    }
+    
+    static func fetchProductBrands() -> [String] {
+        var brandNames: [String] = []
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let result = userDefaults.objectForKey("userProfile")
+        for idx in 0..<result!.count {
+            let elem = result![idx]["item"]!!["brand"] as! String
+            brandNames.append(elem)
+        }
+        return brandNames
+    }
+    
+    
+    static func fetchProductPrices() -> [Int] {
+        var productPrices: [Int] = []
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let result = userDefaults.objectForKey("userProfile")
+        for idx in 0..<result!.count {
+            let elem = result![idx]["item"]!!["price"] as! Int
+            productPrices.append(elem)
+        }
+        return productPrices
+    }
+    
+    static func fetchProductSupermarkets() -> [String] {
+        var productSupermarkets: [String] = []
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let result = userDefaults.objectForKey("userProfile")
+        for idx in 0..<result!.count {
+            let elem = result![idx]["item"]!!["supermarket"] as! String
+            productSupermarkets.append(elem)
+        }
+        return productSupermarkets
+    }
+    
+    func contentCellGenerator(text: String, cellForItemAtIndexPath indexPath: NSIndexPath) -> ContentCollectionViewCell {
+        let contentCell : ContentCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(contentCellIdentifier, forIndexPath: indexPath) as! ContentCollectionViewCell
+        contentCell.contentLabel.font = UIFont.systemFontOfSize(13)
+        contentCell.contentLabel.textColor = UIColor.blackColor()
+        contentCell.contentLabel.text = text
+        if indexPath.section % 2 != 0 {
+            contentCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
+        } else {
+            contentCell.backgroundColor = UIColor.whiteColor()
+        }
+        
+        return contentCell
+    }
+    
+    func dateCellGenerator(text: String, cellForItemAtIndexPath indexPath: NSIndexPath) -> DateCollectionViewCell {
+        let dateCell : DateCollectionViewCell = collectionView .dequeueReusableCellWithReuseIdentifier(dateCellIdentifier, forIndexPath: indexPath) as! DateCollectionViewCell
+        dateCell.dateLabel.font = UIFont.systemFontOfSize(13)
+        dateCell.dateLabel.textColor = UIColor.blackColor()
+        dateCell.dateLabel.text = text
+        if indexPath.section % 2 != 0 {
+            dateCell.backgroundColor = UIColor(white: 242/255.0, alpha: 1.0)
+        } else {
+            dateCell.backgroundColor = UIColor.whiteColor()
+        }
+        
+        return dateCell
     }
 }
 
