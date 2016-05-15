@@ -38,6 +38,9 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     // MARK - UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        if productsArray.isEmpty == true {
+            return 1
+        }
         return productsArray.count
     }
     

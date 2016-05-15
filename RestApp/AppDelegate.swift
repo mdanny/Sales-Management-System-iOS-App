@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Stripe
+
+var stripeKey = "pk_test_hdrmHWueNj7Wi8LRvXsFDvvr"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Stripe configuration
-//        Stripe.setDefaultPublishableKey("sk_test_KOqGXCWtI5fVAq3jgLF93rJF")
+        Stripe.setDefaultPublishableKey(stripeKey)
         
         return true
     }

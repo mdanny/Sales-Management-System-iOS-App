@@ -7,10 +7,10 @@
 //
 
 
-#import <Stripe/Stripe.h>
+
 
 #ifndef RestApp_Bridging_Header_h
 #define RestApp_Bridging_Header_h
-
+#import <Stripe/Stripe.h>
 
 #endif /* RestApp_Bridging_Header_h */

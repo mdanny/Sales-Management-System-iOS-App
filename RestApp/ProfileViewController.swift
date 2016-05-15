@@ -29,14 +29,11 @@ class ProfileViewController: UIViewController {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let tuple = user!["history"]!! as! NSArray
+        let uid = user!["_id"] as! String
+        print("This is the USER_ID: ", uid)
         
-//        for idx in 0..<tuple.count {
-//            var elem = tuple[idx]["item"]!!["name"] as! String
-//            productNames.append(elem)
-//        }
-        
-//        print("This is the TUPLE CONVERTED TO DICTIONARY!!!!", productNames)
         userDefaults.setObject(tuple, forKey: "userProfile")
+        userDefaults.setObject(uid, forKey: "userId")
     }
     
     func scaleUIImageToSize(let image: UIImage, let size: CGSize) -> UIImage {

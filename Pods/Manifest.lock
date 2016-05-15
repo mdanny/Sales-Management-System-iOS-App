@@ -2,21 +2,18 @@ PODS:
   - Alamofire (3.3.1)
   - AlamofireImage (2.4.0):
     - Alamofire (~> 3.3)
-  - Stripe (4.0.3):
-    - Stripe/Checkout (= 4.0.3)
-    - Stripe/Core (= 4.0.3)
-  - Stripe/Checkout (4.0.3):
-    - Stripe/Core
-  - Stripe/Core (4.0.3)
+  - Stripe (7.0.1):
+    - Stripe/Core (= 7.0.1)
+  - Stripe/Core (7.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
   - AlamofireImage (~> 2.0)
-  - Stripe (~> 4.0)
+  - Stripe (~> 7.0)
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
-  Stripe: 43a4307dc789483a61668d187c4a917d1348b0b6
+  Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
 
 COCOAPODS: 0.39.0

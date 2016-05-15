@@ -52,6 +52,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     @IBOutlet weak var lblQRCodeResult: UILabel!
     @IBOutlet weak var buttonLabel: UIButton!
     @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var payButton: UIButton!
     
     //declare the variables
     var objCaptureSession: AVCaptureSession?
@@ -126,6 +127,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         self.view.bringSubviewToFront(lblQRCodeLabel)
         self.view.bringSubviewToFront(buttonLabel)
         self.view.bringSubviewToFront(postButton)
+        self.view.bringSubviewToFront(payButton)
     }
     
     func initializeQRView() {
@@ -194,6 +196,11 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     @IBAction func postButtonTapped(sender: UIButton) {
         self.performSegueWithIdentifier("ShowAddViewSegue", sender: self)
     }
+    
+    
+//    @IBAction func payButtonTapped(sender: AnyObject) {
+//
+//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "ShowAddViewSegue" {

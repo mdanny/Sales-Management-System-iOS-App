@@ -7,64 +7,99 @@
 //
 
 import UIKit
+import Stripe
+import Alamofire
 
-class PayViewController: UITableViewController, UITextFieldDelegate {
+class PayViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     
     //Outlets
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var cardNumberTextField: UITextField!
-    @IBOutlet weak var expireDateTextField: UITextField!
-    @IBOutlet weak var cvcTextField: UITextField!
-    @IBOutlet weak var amountTextField: UITextField!
+    
+    @IBOutlet weak var payButton: UIButton!
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    @IBOutlet var textFields: [UITextField]!
+    
+    
+    private var uid: String {
+        return PayViewController.retrieveUser()
+    }
+    var stripeInfo: AnyObject?
     
     // Delegate methods
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         return true
     }
     
+    let paymentTextField = STPPaymentCardTextField()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        paymentTextField.frame = CGRectMake(15, 199, CGRectGetWidth(self.view.frame) - 30, 44)
+        paymentTextField.delegate = self
+        view.addSubview(paymentTextField)
+        payButton.hidden = true;
+    }
     
 //    @IBAction func pay(sender: AnyObject) {
-//        //Initiate the card
-//        var stripeCard = STPCard()
 //        
-//        // Split the expiration date to extract Month & Year
-//        if self.expireDateTextField.text?.isEmpty == false {
-//            let expDate = self.expireDateTextField.text?.componentsSeparatedByString("/")
-//            let expMonth = UInt(expDate![0].Int()!)
-//            let expYear = UInt(expDate![1].Int()!)
-//            
-//            // Send the card info to Stripe to get the token
-//            stripeCard.number = self.cardNumberTextField.text
-//            stripeCard.cvc = self.cvcTextField.text
-//            stripeCard.expMonth = expMonth
-//            stripeCard.expYear = expYear
-//        }
-    
-//        var underlyingError: NSError?
-//        stripeCard.validateCardReturningError(&underlyingError)
-//        if underlyingError != nil {
-//            self.spinner.stopAnimating()
-//            self.handleError(underlyingError!)
-//        return
-//        }
-//    
-//        STPAPIClient.sharedClient().createTokenWithCard(stripeCard, completion: { (token, error) -> Void in
-//            
-//            if error != nil {
-//                self.handleError(error!)
-//                return
+//    func postStripeToken(token: STPToken) {
+//        let URL = "http://46.101.104.55:3000/payment"
+//        let parameters = ["stripeToken": token.tokenId,
+//                          "amount": "123",
+//                          "currency": "usd",
+//                          "description": self.uid]
+//        
+//        Alamofire.request(.POST, URL, parameters: parameters).responseJSON {
+//            response in
+//            if let paymentInfo = response.response {
+//                self.stripeInfo = paymentInfo
+//                print("This is the Stripe response value",response.result.value)
+//                }
 //            }
-//            
-//            self.postStripeToken(token!)
-//        })
+//        }
 //    }
-//    
-//    func handleError(error: NSError) {
-//        UIAlertView(title: "Please try again", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK").show()
-//    }
-//    
+    
+    func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
+        if textField.valid {
+            payButton.hidden = false
+        }
+    }
+    
+    @IBAction func payButtonAction(sender: AnyObject) {
+        let card = paymentTextField.cardParams
+        
+        STPAPIClient.sharedClient().createTokenWithCard(card, completion: {(token, error) -> Void in
+            if let error = error {
+                print(error)
+            }
+            else if let token = token {
+                print(token)
+                self.chargeUsingToken(token)
+            }
+        })
+    }
+    
+    func chargeUsingToken(token: STPToken) {
+//        let requestString = "http://46.101.104.55:3000/payment"
+        let requestString = "https://hidden-forest-16950.herokuapp.com/charge.php"
+        let params = ["stripeToken": token.tokenId, "amount": "200", "currency": "usd", "description": self.uid]
+        
+        Alamofire.request(.POST, requestString, parameters: params)
+            .responseJSON { response in
+                print("ORIGINAL URL REQUEST ------------->",response.request) // original URL request
+                print("URL RESPONSE ----------->",response.response) // URL response
+                print("RESPONSE DATA: ----------->",response.data) // server data
+                print("RESPONSE RESULT: ---------->",response.result) // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON: -------------> \(JSON)")
+                }
+        }
+    }
+    
+    static func retrieveUser() -> String {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let result = userDefaults.objectForKey("userId")
+        return result as! String
+    }
 }
