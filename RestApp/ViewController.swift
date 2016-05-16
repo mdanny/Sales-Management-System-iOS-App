@@ -13,10 +13,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
     
-    var jsonArray: NSMutableArray?
+    var jsonObject: [String: AnyObject]?
     var newArray: Array<String> = []
     var idArray: Array<String> = []
-//    var objQR: QRViewController?
+
     
     // API data stored in private variables (TODO refactor to an associative array)
     internal private(set) var apiCategoryIndex: [String] = ["56f90fcd7ed4e3a5131002c7", "56f911477ed4e3a5131002d2", "56fcd6f4176d3c5614f83888", "56fcd6fb176d3c5614f83889", "57150681f3343345266963a5", "571931a446c9671e5ec1a1a1", "571933ad67a3bf03531c7f2f"]
@@ -67,23 +67,62 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.newArray.removeAll()
         self.idArray.removeAll()
         
-        Alamofire.request(.GET, "http://46.101.104.55:3000/products_ios/\(self.apiCategoryIndex[6])").responseJSON {
+//        Alamofire.request(.GET, "http://46.101.104.55:3000/products_ios/\(self.apiCategoryIndex[6])").responseJSON {
+//            response in
+//            //print(response.request) // original URL request
+//            print("This is the products_ios URL response",response.response) // URL response
+//            //print(response.data) // server data
+//            print("This is the products_ios response result: ",response.result) // result of response serialization
+////            print("This is the URL response value",response.result.value)
+//            if let JSON = response.result.value {
+//                
+//                self.jsonArray = JSON as? NSMutableArray
+//                for item in self.jsonArray! {
+//                    print(item["name"]!)
+//                    let string = item["name"]!
+//                    let id = item["_id"]! // NEW
+//                    self.newArray.append(string! as! String)
+//                    self.idArray.append(id! as! String) // NEW
+//                }
+//                
+//                print("New array is \(self.newArray)")
+//                
+//                self.tableView.reloadData()
+//            }
+//        }
+        
+        Alamofire.request(.GET, "http://46.101.104.55:3000/cart_ios").responseJSON {
             response in
             //print(response.request) // original URL request
             print("This is the products_ios URL response",response.response) // URL response
             //print(response.data) // server data
-            print("This is the products_ios response result: ",response.result) // result of response serialization
-//            print("This is the URL response value",response.result.value)
+            print("This is the cart response result: ",response.result) // result of response serialization
+            print("This is the URL response value",response.result.value)
             if let JSON = response.result.value {
                 
-                self.jsonArray = JSON as? NSMutableArray
-                for item in self.jsonArray! {
-                    print(item["name"]!)
-                    let string = item["name"]!
-                    let id = item["_id"]! // NEW
-                    self.newArray.append(string! as! String)
-                    self.idArray.append(id! as! String) // NEW
+                self.jsonObject = JSON as? [String: AnyObject]
+                print(self.jsonObject)
+                
+                
+                let itemsArray = self.jsonObject!["items"] as! NSArray
+                
+                let cartTotal = self.jsonObject!["total"] as! NSInteger
+                
+                for object in itemsArray {
+                    
+                    let cartProductName = object["item"]!!["name"] as! String
+                    let cartProductId = object["_id"]! // NEW
+                    let cartProductPrice = object["item"]!!["price"]
+                    
+                    let cartProductAmount = object["quantity"]
+                    
+                    print("CART -----------> This is the product price: \(cartProductPrice), this is the product amount: \(cartProductAmount), this is the total price: \(cartTotal)")
+                    
+                    
+                    self.newArray.append(cartProductName )
+                    self.idArray.append(cartProductId as! String) // NEW
                 }
+                
                 
                 print("New array is \(self.newArray)")
                 

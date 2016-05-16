@@ -9,7 +9,8 @@
 import UIKit
 import Stripe
 
-var stripeKey = "pk_test_hdrmHWueNj7Wi8LRvXsFDvvr"
+//var stripeKey = "pk_test_hdrmHWueNj7Wi8LRvXsFDvvr" my stripe account key, below is the node key matching pair
+var stripeKey = "pk_test_IKBomqpXkilM4eiU4IejRqTa"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

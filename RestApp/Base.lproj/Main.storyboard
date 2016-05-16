@@ -63,7 +63,7 @@
             </objects>
             <point key="canvasLocation" x="399" y="-12"/>
         </scene>
-        <!--View Controller-->
+        <!--Cart-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RestApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -107,7 +107,9 @@
                             <constraint firstItem="3E1-y8-UCw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nwb-cg-NgM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="MSM-0Q-wvg"/>
+                    <navigationItem key="navigationItem" title="Cart" id="MSM-0Q-wvg">
+                        <barButtonItem key="backBarButtonItem" title="Cart" id="niI-Up-7mG"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="3E1-y8-UCw" id="gCX-cY-itN"/>
@@ -115,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1587" y="-446"/>
+            <point key="canvasLocation" x="2119" y="-446"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="AJP-MA-0pc">
@@ -222,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ljo-e2-UXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3032" y="-114"/>
+            <point key="canvasLocation" x="2748" y="-376"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="o8z-Sv-yEl">
@@ -253,28 +255,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebn-ut-sjz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3706" y="-6"/>
+            <point key="canvasLocation" x="4238" y="-6"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="qDm-ha-hUX">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4ak-NH-Pkt" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bZU-R9-mtM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Cuw-m9-gcU"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jbb-vr-bkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1118" y="-446"/>
-        </scene>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="c7V-ou-4rS">
             <objects>
                 <viewController id="aV9-3O-loz" customClass="ProfileViewController" customModule="RestApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -341,11 +324,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wZa-Gm-A7o">
+                    <navigationItem key="navigationItem" title="Profile" id="wZa-Gm-A7o">
+                        <barButtonItem key="backBarButtonItem" title="Profile" id="q14-X8-cby"/>
                         <barButtonItem key="rightBarButtonItem" title="Go to cart" id="MYs-SK-33F">
                             <connections>
                                 <action selector="barButtonTapped:" destination="aV9-3O-loz" id="MAb-o8-IgI"/>
-                                <segue destination="4ak-NH-Pkt" kind="show" identifier="ShowViewSegue" id="7Ml-T6-ASc"/>
+                                <segue destination="BYZ-38-t0r" kind="show" id="yZx-Kc-msx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -360,7 +344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XoE-Ih-ekL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282" y="414"/>
+            <point key="canvasLocation" x="1608" y="-292"/>
         </scene>
         <!--Pay View Controller-->
         <scene sceneID="ubi-nY-VzA">
@@ -426,7 +410,7 @@
                 <viewController id="PMq-Ri-QJm" customClass="CollectionViewController" customModule="RestApp" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zGl-aW-Ams" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1595" y="954"/>
+            <point key="canvasLocation" x="1597" y="394"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0ov-q6-GiU">

@@ -40,25 +40,6 @@ class PayViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         payButton.hidden = true;
     }
     
-//    @IBAction func pay(sender: AnyObject) {
-//        
-//    func postStripeToken(token: STPToken) {
-//        let URL = "http://46.101.104.55:3000/payment"
-//        let parameters = ["stripeToken": token.tokenId,
-//                          "amount": "123",
-//                          "currency": "usd",
-//                          "description": self.uid]
-//        
-//        Alamofire.request(.POST, URL, parameters: parameters).responseJSON {
-//            response in
-//            if let paymentInfo = response.response {
-//                self.stripeInfo = paymentInfo
-//                print("This is the Stripe response value",response.result.value)
-//                }
-//            }
-//        }
-//    }
-    
     func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
         if textField.valid {
             payButton.hidden = false
@@ -80,9 +61,9 @@ class PayViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     }
     
     func chargeUsingToken(token: STPToken) {
-//        let requestString = "http://46.101.104.55:3000/payment"
-        let requestString = "https://hidden-forest-16950.herokuapp.com/charge.php"
-        let params = ["stripeToken": token.tokenId, "amount": "200", "currency": "usd", "description": self.uid]
+        let requestString = "http://46.101.104.55:3000/payment_ios"
+//        let requestString = "https://hidden-forest-16950.herokuapp.com/charge.php"
+        let params = ["stripeToken": token.tokenId, "stripeMoney": "200", "currency": "usd", "description": self.uid]
         
         Alamofire.request(.POST, requestString, parameters: params)
             .responseJSON { response in
