@@ -62,12 +62,13 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     var parsedString: String?
     
     // API variables
-    var apiName: NSString?
-    var apiCategory: NSString?
-    var apiBrand: NSString?
-    var apiSupermarket: NSString?
-    var apiDescription: NSString?
-    var apiPrice: NSString?
+    var apiName: String?
+    var apiCategory: String?
+    var apiBrand: String?
+    var apiSupermarket: String?
+    var apiDescription: String?
+    var apiPrice: Int?
+    var apiId: String?
     
     
     override func viewDidLoad() {
@@ -167,13 +168,15 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
             let json: AnyObject? = jsonString.parseJSONString
             let parsedJSON = json! as! NSDictionary
             
+            print("---------PARSED JSON FROM QRViewController:---------- \(parsedJSON)")
             // Define the constants for API POST request
-            self.apiName = parsedJSON.valueForKey("name") as? NSString
-            self.apiCategory = parsedJSON.valueForKey("category") as? NSString
-            self.apiBrand = parsedJSON.valueForKey("brand") as? NSString
-            self.apiSupermarket = parsedJSON.valueForKey("supermarket") as? NSString
-            self.apiDescription = parsedJSON.valueForKey("description") as? NSString
-            self.apiPrice = parsedJSON.valueForKey("price") as? NSString
+            self.apiName = parsedJSON.valueForKey("name") as? String
+            self.apiCategory = parsedJSON.valueForKey("category") as? String
+            self.apiBrand = parsedJSON.valueForKey("brand") as? String
+            self.apiSupermarket = parsedJSON.valueForKey("supermarket") as? String
+            self.apiDescription = parsedJSON.valueForKey("description") as? String
+            self.apiPrice = parsedJSON.valueForKey("price") as? Int
+            self.apiId = parsedJSON.valueForKey("_id") as? String
             
             let alertControllerSuccess = UIAlertController(title: "Cart", message:"Your item is: \(parsedJSON)\n" , preferredStyle: .Alert)
             alertControllerSuccess.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
@@ -197,11 +200,6 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         self.performSegueWithIdentifier("ShowAddViewSegue", sender: self)
     }
     
-    
-//    @IBAction func payButtonTapped(sender: AnyObject) {
-//
-//    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "ShowAddViewSegue" {
             let addViewController = segue.destinationViewController as! AddViewController
@@ -212,6 +210,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
             addViewController.apiSupermarket = self.apiSupermarket
             addViewController.apiDescription = self.apiDescription
             addViewController.apiPrice = self.apiPrice
+            addViewController.apiId = self.apiId
         }
     }
     
