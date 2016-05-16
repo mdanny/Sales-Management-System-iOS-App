@@ -14,7 +14,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     var jsonObject: [String: AnyObject]?
-    var newArray: Array<String> = []
+    var namesArray: Array<String> = []
+    var pricesArray: Array<Int> = []
+    var amountsArray: Array<Int> = []
     var idArray: Array<String> = []
 
     
@@ -36,13 +38,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     // Adding delegate methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.newArray.count
+        return self.namesArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier("MyCustomCell", forIndexPath: indexPath) as! CustomCell
         
-        cell.textLabel?.text = self.newArray[indexPath.row]
+        cell.nameLabel?.text = self.namesArray[indexPath.row]
+        cell.amountLabel?.text = String(self.amountsArray[indexPath.row])
+        cell.priceLabel?.text = String(self.pricesArray[indexPath.row])
+        
         return cell
     }
     
@@ -64,7 +69,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func downloadAndUpdate() {
         
         // Refactoring (to delete the already populated cells)
-        self.newArray.removeAll()
+        self.namesArray.removeAll()
         self.idArray.removeAll()
         
 //        Alamofire.request(.GET, "http://46.101.104.55:3000/products_ios/\(self.apiCategoryIndex[6])").responseJSON {
@@ -119,12 +124,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     print("CART -----------> This is the product price: \(cartProductPrice), this is the product amount: \(cartProductAmount), this is the total price: \(cartTotal)")
                     
                     
-                    self.newArray.append(cartProductName )
+                    self.namesArray.append(cartProductName)
+                    self.pricesArray.append(cartProductPrice as! Int)
+                    self.amountsArray.append(cartProductAmount as! Int)
                     self.idArray.append(cartProductId as! String) // NEW
                 }
                 
                 
-                print("New array is \(self.newArray)")
+                print("New array is \(self.namesArray)")
                 
                 self.tableView.reloadData()
             }
