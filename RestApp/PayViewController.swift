@@ -23,6 +23,10 @@ class PayViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     private var uid: String {
         return PayViewController.retrieveUser()
     }
+    
+    private var total: Double {
+        return PayViewController.retrieveTotal()
+    }
     var stripeInfo: AnyObject?
     
     // Delegate methods
@@ -63,9 +67,9 @@ class PayViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     func chargeUsingToken(token: STPToken) {
         let requestString = "http://46.101.104.55:3000/payment_ios"
 //        let requestString = "https://hidden-forest-16950.herokuapp.com/charge.php"
-        let params = ["stripeToken": token.tokenId, "stripeMoney": "100", "currency": "usd", "description": self.uid]
+        let params = ["stripeToken": token.tokenId, "stripeMoney": self.total, "description": self.uid]
         
-        Alamofire.request(.POST, requestString, parameters: params)
+        Alamofire.request(.POST, requestString, parameters: params as? [String : AnyObject])
             .responseJSON { response in
                 print("ORIGINAL URL REQUEST ------------->",response.request) // original URL request
                 print("URL RESPONSE ----------->",response.response) // URL response
@@ -82,5 +86,11 @@ class PayViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let result = userDefaults.objectForKey("userId")
         return result as! String
+    }
+    
+    static func retrieveTotal() -> Double {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let result = userDefaults.objectForKey("total")
+        return result as! Double
     }
 }

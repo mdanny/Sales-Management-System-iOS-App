@@ -33,16 +33,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-//        print("TOTAL----------", self.total)
-        
-//        self.totalCartLabel.text = String(self.total)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print("NAMES ARRAY FROM viewDidAppear: ---------------",self.namesArray)
-        print("TOTAL FROM viewDidAppear: ---------------",self.total!)
         self.totalCartLabel?.text = String(self.total!)
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(Double((self.totalCartLabel?.text)!), forKey: "total")
         self.tableView.reloadData()
     }
 
@@ -57,7 +54,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.nameLabel?.text = self.namesArray[indexPath.row]
         cell.amountLabel?.text = String(self.amountsArray[indexPath.row])
         cell.priceLabel?.text = String(self.pricesArray[indexPath.row])
-//        cell.totalLabel?.text = String(self.total[indexPath.section])
         
         return cell
     }
@@ -135,7 +131,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     let cartProductAmount = object["quantity"]
                     
                     print("CART -----------> This is the product price: \(cartProductPrice), this is the product amount: \(cartProductAmount), this is the total price: \(cartTotal)")
-                    
                     
                     self.namesArray.append(cartProductName)
                     self.pricesArray.append(cartProductPrice as! Double)

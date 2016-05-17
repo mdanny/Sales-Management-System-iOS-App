@@ -41,7 +41,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         if productsArray.isEmpty == true {
             return 1
         }
-        return productsArray.count
+        return productsArray.count + 1
     }
     
     
