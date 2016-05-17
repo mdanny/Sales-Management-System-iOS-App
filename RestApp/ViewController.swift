@@ -13,12 +13,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
     
+    // Total calculation
+    @IBOutlet weak var totalCartLabel: UILabel!
+    
+    var total: Double?
+    
     var jsonObject: [String: AnyObject]?
     var namesArray: Array<String> = []
-    var pricesArray: Array<Int> = []
+    var pricesArray: Array<Double> = []
     var amountsArray: Array<Int> = []
     var idArray: Array<String> = []
-
     
     // API data stored in private variables (TODO refactor to an associative array)
     internal private(set) var apiCategoryIndex: [String] = ["56f90fcd7ed4e3a5131002c7", "56f911477ed4e3a5131002d2", "56fcd6f4176d3c5614f83888", "56fcd6fb176d3c5614f83889", "57150681f3343345266963a5", "571931a446c9671e5ec1a1a1", "571933ad67a3bf03531c7f2f"]
@@ -29,10 +33,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
+//        print("TOTAL----------", self.total)
+        
+//        self.totalCartLabel.text = String(self.total)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        print("NAMES ARRAY FROM viewDidAppear: ---------------",self.namesArray)
+        print("TOTAL FROM viewDidAppear: ---------------",self.total!)
+        self.totalCartLabel?.text = String(self.total!)
         self.tableView.reloadData()
     }
 
@@ -47,6 +57,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.nameLabel?.text = self.namesArray[indexPath.row]
         cell.amountLabel?.text = String(self.amountsArray[indexPath.row])
         cell.priceLabel?.text = String(self.pricesArray[indexPath.row])
+//        cell.totalLabel?.text = String(self.total[indexPath.section])
         
         return cell
     }
@@ -64,12 +75,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    
     // Ensure that the tableview updates after we add another item
     func downloadAndUpdate() {
         
         // Refactoring (to delete the already populated cells)
+        self.total = nil
         self.namesArray.removeAll()
+        self.pricesArray.removeAll()
+        self.amountsArray.removeAll()
         self.idArray.removeAll()
         
 //        Alamofire.request(.GET, "http://46.101.104.55:3000/products_ios/\(self.apiCategoryIndex[6])").responseJSON {
@@ -111,7 +124,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 let itemsArray = self.jsonObject!["items"] as! NSArray
                 
-                let cartTotal = self.jsonObject!["total"] as! NSInteger
+                let cartTotal = self.jsonObject!["total"] as! Double
                 
                 for object in itemsArray {
                     
@@ -125,13 +138,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     
                     
                     self.namesArray.append(cartProductName)
-                    self.pricesArray.append(cartProductPrice as! Int)
+                    self.pricesArray.append(cartProductPrice as! Double)
                     self.amountsArray.append(cartProductAmount as! Int)
                     self.idArray.append(cartProductId as! String) // NEW
+                    self.total = cartTotal
                 }
                 
                 
-                print("New array is \(self.namesArray)")
+                print("The Names array is \(self.namesArray)")
+                print("The Prices array is \(self.pricesArray)")
                 
                 self.tableView.reloadData()
             }
@@ -146,7 +161,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 
