@@ -67,7 +67,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     var apiBrand: String?
     var apiSupermarket: String?
     var apiDescription: String?
-    var apiPrice: Int?
+    var apiPrice: Double?
     var apiId: String?
     
     
@@ -175,7 +175,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
             self.apiBrand = parsedJSON.valueForKey("brand") as? String
             self.apiSupermarket = parsedJSON.valueForKey("supermarket") as? String
             self.apiDescription = parsedJSON.valueForKey("description") as? String
-            self.apiPrice = parsedJSON.valueForKey("price") as? Int
+            self.apiPrice = parsedJSON.valueForKey("price") as? Double
             self.apiId = parsedJSON.valueForKey("_id") as? String
             
             let alertControllerSuccess = UIAlertController(title: "Cart", message:"Your item is: \(parsedJSON)\n" , preferredStyle: .Alert)

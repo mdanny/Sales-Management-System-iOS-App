@@ -37,9 +37,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.totalCartLabel?.text = String(self.total!)
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setObject(Double((self.totalCartLabel?.text)!), forKey: "total")
+        if self.total != nil {
+            self.totalCartLabel?.text = String(self.total!)
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setObject(Double((self.totalCartLabel?.text)!), forKey: "total")
+        }
+        
         self.tableView.reloadData()
     }
 
@@ -75,6 +78,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func downloadAndUpdate() {
         
         // Refactoring (to delete the already populated cells)
+        self.totalCartLabel?.text = "0.0"
         self.total = nil
         self.namesArray.removeAll()
         self.pricesArray.removeAll()

@@ -19,7 +19,7 @@ class AddViewController: UIViewController {
     var apiBrand: String?
     var apiSupermarket: String?
     var apiDescription: String?
-    var apiPrice: Int?
+    var apiPrice: Double?
     var apiId: String?
 
 
@@ -35,9 +35,20 @@ class AddViewController: UIViewController {
 //        print("USER ID FROM CART: \(self.apiId!)\n")
 //        print("PRICE VALUE FROM CART: \(self.apiPrice!)\n")
         print("The segue is working!")
-        Alamofire.request(.POST, URL, parameters: ["product_id": (self.apiId)!, "priceValue": (self.apiPrice)!, "quantity": "1"])
-        print("-------------\n")
-        print("Operation has been done")
+        
+            print("There are no products in the cart --- Please make sure you add products in the cart.")
+        if let productId = self.apiId {
+            if let productPrice = self.apiPrice {
+                Alamofire.request(.POST, URL, parameters: ["product_id": productId, "priceValue": productPrice, "quantity": "1"])
+                print("-------------\n")
+                print("Operation has been done")
+            }
+            
+        }
+        else {
+            print("There are no products in the cart! Please make sure you have at least one product in the cart!")
+        }
+        
         self.navigationController!.popViewControllerAnimated(true)
     }
 
