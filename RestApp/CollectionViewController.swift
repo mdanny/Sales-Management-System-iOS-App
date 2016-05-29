@@ -34,6 +34,12 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
         self.collectionView.registerNib(UINib(nibName: "ContentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: contentCellIdentifier)
     }
     
+// TODO: load the purchases made instantaneously in the table
+    
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+//        
+//    }
     
     // MARK - UICollectionViewDataSource
     

@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var loginButtonLabel: UIButton!
+    
+    @IBOutlet weak var registerButtonLabel: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -22,6 +24,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    
+    
+    @IBAction func registerButtonTapped(sender: AnyObject) {
+        self.performSegueWithIdentifier("ShowRegisterViewSegue", sender: self)
     }
     
     
@@ -67,6 +75,12 @@ class LoginViewController: UIViewController {
             
             pvc.user = self.accountData!
         }
+        
+//        if segue.identifier == "ShowRegisterViewSegue" {
+//            let alertControllerRegister = UIAlertController(title: "Redirecting to registration page", message:"Complete the steps to create an account" , preferredStyle: .ActionSheet)
+//            alertControllerRegister.addAction(UIAlertAction(title: "Continue", style: .Default, handler: self))
+//            presentViewController(alertControllerRegister, animated: true, completion: nil)
+//        }
     }
 
 }
