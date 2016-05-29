@@ -26,7 +26,21 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        displayWalkthroughs()
+    }
     
+    func displayWalkthroughs() {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let displayedWalkthrough = userDefaults.boolForKey("DisplayedWalkthrough")
+        
+        if !displayedWalkthrough {
+            if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("PageViewController") {
+                self.presentViewController(pageViewController, animated: true, completion: nil)
+            }
+        }
+        
+    }
     
     @IBAction func registerButtonTapped(sender: AnyObject) {
         self.performSegueWithIdentifier("ShowRegisterViewSegue", sender: self)
