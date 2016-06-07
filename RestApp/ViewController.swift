@@ -62,7 +62,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.nameLabel?.text = self.namesArray[indexPath.row]
         cell.amountLabel?.text = String(self.amountsArray[indexPath.row])
         cell.priceLabel?.text = String(self.pricesArray[indexPath.row])
-        
         cell.productImage?.imageFromUrl(self.imagesArray[indexPath.row])
         
         return cell
@@ -71,10 +70,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
-            print("Id is \(self.idArray[indexPath.row])")
             
-            Alamofire.request(.DELETE, "http://46.101.104.55:3000/products_ios/\(self.apiCategoryIndex[6])/\(self.idArray[indexPath.row])")
-            self.downloadAndUpdate()
+            Alamofire.request(.POST, "http://46.101.104.55:3000/remove", parameters: ["item": (self.idArray[indexPath.row]), "price": (self.pricesArray[indexPath.row])])
+            
+            self.namesArray.removeAtIndex(indexPath.row)
+            self.totalCartLabel?.text = String(Double((self.totalCartLabel?.text)!)! - self.pricesArray[indexPath.row])
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            //self.downloadAndUpdate()
+            self.tableView.reloadData()
         }
         else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -93,29 +96,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.imagesArray.removeAll()
         self.idArray.removeAll()
         
-//        Alamofire.request(.GET, "http://46.101.104.55:3000/products_ios/\(self.apiCategoryIndex[6])").responseJSON {
-//            response in
-//            //print(response.request) // original URL request
-//            print("This is the products_ios URL response",response.response) // URL response
-//            //print(response.data) // server data
-//            print("This is the products_ios response result: ",response.result) // result of response serialization
-////            print("This is the URL response value",response.result.value)
-//            if let JSON = response.result.value {
-//                
-//                self.jsonArray = JSON as? NSMutableArray
-//                for item in self.jsonArray! {
-//                    print(item["name"]!)
-//                    let string = item["name"]!
-//                    let id = item["_id"]! // NEW
-//                    self.newArray.append(string! as! String)
-//                    self.idArray.append(id! as! String) // NEW
-//                }
-//                
-//                print("New array is \(self.newArray)")
-//                
-//                self.tableView.reloadData()
-//            }
-//        }
         
         Alamofire.request(.GET, "http://46.101.104.55:3000/cart_ios").responseJSON {
             response in
@@ -163,33 +143,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
-//    func downloadImages() {
-////        self.imageObjects?.removeAll()
-//        print("----------This is the imagesArray---------", self.imagesArray)
-//        if let images = self.imagesArray as? [String] {
-//            print("-------------images from downloadImages()----------", images)
-//            for image in images {
-//                print("~~~~~~~~~~Image inside loop~~~~~~~",image)
-//                Alamofire.request(.GET, String(image)).responseImage {
-//                    response in
-//                    if let imageResponse = response.result.value {
-//                        print("==========imageResponse========",imageResponse)
-//                        self.imageObjects.append(imageResponse)
-//                    self.tableView.reloadData()
-//                    }
-//                }
-//            }
-//            print("-------imageObjects from downloadImages()-----------", self.imageObjects)
-//        }
-//    }
-    
     override func viewWillAppear(animated: Bool) {
         self.downloadAndUpdate()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
