@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import RxAlamofire
+import RxSwift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
 
@@ -22,7 +24,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var namesArray: Array<String> = []
     var pricesArray: Array<Double> = []
     var amountsArray: Array<Int> = []
+    var imagesArray: Array<String> = []
     var idArray: Array<String> = []
+    var imageObjects: Array<UIImage> = []
     
     // API data stored in private variables (TODO refactor to an associative array)
     internal private(set) var apiCategoryIndex: [String] = ["56f90fcd7ed4e3a5131002c7", "56f911477ed4e3a5131002d2", "56fcd6f4176d3c5614f83888", "56fcd6fb176d3c5614f83889", "57150681f3343345266963a5", "571931a446c9671e5ec1a1a1", "571933ad67a3bf03531c7f2f"]
@@ -54,9 +58,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MyCustomCell", forIndexPath: indexPath) as! CustomCell
         
+        
         cell.nameLabel?.text = self.namesArray[indexPath.row]
         cell.amountLabel?.text = String(self.amountsArray[indexPath.row])
         cell.priceLabel?.text = String(self.pricesArray[indexPath.row])
+        
+        cell.productImage?.imageFromUrl(self.imagesArray[indexPath.row])
         
         return cell
     }
@@ -83,6 +90,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.namesArray.removeAll()
         self.pricesArray.removeAll()
         self.amountsArray.removeAll()
+        self.imagesArray.removeAll()
         self.idArray.removeAll()
         
 //        Alamofire.request(.GET, "http://46.101.104.55:3000/products_ios/\(self.apiCategoryIndex[6])").responseJSON {
@@ -131,26 +139,49 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     let cartProductName = object["item"]!!["name"] as! String
                     let cartProductId = object["_id"]! // NEW
                     let cartProductPrice = object["item"]!!["price"]
-                    
                     let cartProductAmount = object["quantity"]
+                    let cartProductImage = object["item"]!!["image"]
                     
                     print("CART -----------> This is the product price: \(cartProductPrice), this is the product amount: \(cartProductAmount), this is the total price: \(cartTotal)")
                     
                     self.namesArray.append(cartProductName)
                     self.pricesArray.append(cartProductPrice as! Double)
                     self.amountsArray.append(cartProductAmount as! Int)
+                    self.imagesArray.append(cartProductImage as! String)
                     self.idArray.append(cartProductId as! String) // NEW
                     self.total = cartTotal
+                    
                 }
                 
-                
+            
                 print("The Names array is \(self.namesArray)")
                 print("The Prices array is \(self.pricesArray)")
-                
+                print("The IMAGE NAMES aray is \(self.imagesArray)")
                 self.tableView.reloadData()
             }
         }
+        
     }
+    
+//    func downloadImages() {
+////        self.imageObjects?.removeAll()
+//        print("----------This is the imagesArray---------", self.imagesArray)
+//        if let images = self.imagesArray as? [String] {
+//            print("-------------images from downloadImages()----------", images)
+//            for image in images {
+//                print("~~~~~~~~~~Image inside loop~~~~~~~",image)
+//                Alamofire.request(.GET, String(image)).responseImage {
+//                    response in
+//                    if let imageResponse = response.result.value {
+//                        print("==========imageResponse========",imageResponse)
+//                        self.imageObjects.append(imageResponse)
+//                    self.tableView.reloadData()
+//                    }
+//                }
+//            }
+//            print("-------imageObjects from downloadImages()-----------", self.imageObjects)
+//        }
+//    }
     
     override func viewWillAppear(animated: Bool) {
         self.downloadAndUpdate()
@@ -161,5 +192,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+
+extension UIImageView {
+    public func imageFromUrl(urlString: String) {
+        requestData(.GET, urlString)
+            .observeOn(MainScheduler.instance)
+            .subscribeNext { self.image = UIImage(data: $0.1) }
+    }
 }
 

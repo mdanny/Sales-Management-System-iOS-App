@@ -146,7 +146,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
             lblQRCodeResult.text = "No QRCode text detected"
             return
         }
-        
+        // Get the metadata object.
         let objMetadataMachineReadableCodeObject = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
         if objMetadataMachineReadableCodeObject.type == AVMetadataObjectTypeQRCode {

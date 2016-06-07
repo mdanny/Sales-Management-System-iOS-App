@@ -44,7 +44,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NBx-Be-iUq">
                                 <rect key="frame" x="81" y="202" width="158" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqc-yP-1ay">
                                 <rect key="frame" x="129" y="266" width="63" height="35"/>
@@ -85,11 +85,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3E1-y8-UCw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="157" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3E1-y8-UCw">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2he-oh-LOf">
-                                    <rect key="frame" x="0.0" y="216" width="320" height="56"/>
+                                    <rect key="frame" x="0.0" y="249" width="320" height="56"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Scan QR">
                                         <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -99,11 +99,11 @@
                                     </connections>
                                 </button>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCustomCell" rowHeight="124" id="JXm-0b-MXJ" customClass="CustomCell" customModule="RestApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="124"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCustomCell" rowHeight="157" id="JXm-0b-MXJ" customClass="CustomCell" customModule="RestApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="157"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JXm-0b-MXJ" id="NxF-Yz-UXj">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="156"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rn3-zf-i7p">
@@ -148,6 +148,9 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dgy-Zp-XgI">
+                                                    <rect key="frame" x="169" y="0.0" width="143" height="148"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="CMq-q7-Xb5" firstAttribute="leading" secondItem="g9k-Bo-QWU" secondAttribute="leading" id="4kD-Be-im7"/>
@@ -174,6 +177,7 @@
                                             <outlet property="amountLabel" destination="g9k-Bo-QWU" id="dge-7i-zcf"/>
                                             <outlet property="nameLabel" destination="Hj4-WA-GeJ" id="1Zq-aa-ZgM"/>
                                             <outlet property="priceLabel" destination="CMq-q7-Xb5" id="z1S-1B-IBA"/>
+                                            <outlet property="productImage" destination="Dgy-Zp-XgI" id="7Bd-1k-2tg"/>
                                             <outlet property="totalLabel" destination="MQn-W5-roo" id="Mfu-Ji-Ai2"/>
                                         </connections>
                                     </tableViewCell>
@@ -628,9 +632,9 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="3vp-L0-Gml"/>
                                 <exclude reference="DI9-7w-Bgx"/>
                                 <exclude reference="lSj-J0-iIO"/>
-                                <exclude reference="3vp-L0-Gml"/>
                                 <exclude reference="oOs-Up-fhB"/>
                             </mask>
                         </variation>

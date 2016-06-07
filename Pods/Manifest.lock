@@ -2,6 +2,14 @@ PODS:
   - Alamofire (3.3.1)
   - AlamofireImage (2.4.0):
     - Alamofire (~> 3.3)
+  - RxAlamofire (2.2):
+    - RxAlamofire/Core (= 2.2)
+  - RxAlamofire/Core (2.2):
+    - Alamofire (~> 3.1)
+    - RxSwift (~> 2.1)
+  - RxCocoa (2.5.0):
+    - RxSwift (~> 2.5)
+  - RxSwift (2.5.0)
   - Stripe (7.0.1):
     - Stripe/Core (= 7.0.1)
   - Stripe/Core (7.0.1)
@@ -9,11 +17,17 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.3)
   - AlamofireImage (~> 2.0)
+  - RxAlamofire
+  - RxCocoa (~> 2.0)
+  - RxSwift (~> 2.0)
   - Stripe (~> 7.0)
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
+  RxCocoa: e1b1562e57a554d0fb2aabf9d71b637f177257c7
+  RxSwift: 402b41a50e922a0368fc14cb3bc9f4427920e8ae
   Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
 
 COCOAPODS: 0.39.0

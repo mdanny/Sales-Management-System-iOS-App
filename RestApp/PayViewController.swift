@@ -66,12 +66,11 @@ class PayViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     
     func chargeUsingToken(token: STPToken) {
         let requestString = "http://46.101.104.55:3000/payment_ios"
-//        let requestString = "https://hidden-forest-16950.herokuapp.com/charge.php"
         let params = ["stripeToken": token.tokenId, "stripeMoney": self.total, "description": self.uid]
         
         Alamofire.request(.POST, requestString, parameters: params as? [String : AnyObject])
             .responseJSON { response in
-                print("ORIGINAL URL REQUEST ------------->",response.request) // original URL request
+                print("ORIGINAL URL REQUEST -->",response.request) // original URL request
                 print("URL RESPONSE ----------->",response.response) // URL response
                 print("RESPONSE DATA: ----------->",response.data) // server data
                 print("RESPONSE RESULT: ---------->",response.result) // result of response serialization
