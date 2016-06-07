@@ -61,7 +61,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.nameLabel?.text = self.namesArray[indexPath.row]
         cell.amountLabel?.text = String(self.amountsArray[indexPath.row])
-        cell.priceLabel?.text = String(self.pricesArray[indexPath.row])
+        cell.priceLabel?.text = String(Double(self.pricesArray[indexPath.row]))
         cell.productImage?.imageFromUrl(self.imagesArray[indexPath.row])
         
         return cell
@@ -72,9 +72,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if editingStyle == .Delete {
             
             Alamofire.request(.POST, "http://46.101.104.55:3000/remove", parameters: ["item": (self.idArray[indexPath.row]), "price": (self.pricesArray[indexPath.row])])
+           
+            self.totalCartLabel?.text = String(Double((self.totalCartLabel?.text)!)! - self.pricesArray[indexPath.row])
             
             self.namesArray.removeAtIndex(indexPath.row)
-            self.totalCartLabel?.text = String(Double((self.totalCartLabel?.text)!)! - self.pricesArray[indexPath.row])
+            self.pricesArray.removeAtIndex(indexPath.row)
+            self.imagesArray.removeAtIndex(indexPath.row)
+            self.idArray.removeAtIndex(indexPath.row)
+            
+            print("----------->NAMES-ARRAY<--------", self.namesArray)
+            print("----------->PRICES-ARRAY<--------", self.pricesArray)
+            print("----------->IMAGES-ARRAY<--------", self.imagesArray)
+            
+            
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             //self.downloadAndUpdate()
             self.tableView.reloadData()
@@ -118,7 +128,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     
                     let cartProductName = object["item"]!!["name"] as! String
                     let cartProductId = object["_id"]! // NEW
-                    let cartProductPrice = object["item"]!!["price"]
+                    let cartProductPrice = object["price"]
                     let cartProductAmount = object["quantity"]
                     let cartProductImage = object["item"]!!["image"]
                     

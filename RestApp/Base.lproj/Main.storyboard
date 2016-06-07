@@ -18,6 +18,36 @@
             </objects>
             <point key="canvasLocation" x="-1040" y="-301"/>
         </scene>
+        <!--Signup View Controller-->
+        <scene sceneID="9ot-YM-ibV">
+            <objects>
+                <viewController id="LZX-zA-DG5" customClass="SignupViewController" customModule="RestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z0T-OL-GkY"/>
+                        <viewControllerLayoutGuide type="bottom" id="cBi-Vj-lrN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FQq-ap-9G2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xTb-dM-1Eo">
+                                <rect key="frame" x="87" y="99" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Lt-ZH-aQL">
+                                <rect key="frame" x="87" y="155" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p5A-Gk-9Ty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-692" y="381"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="OGv-YL-hDp">
             <objects>
@@ -540,12 +570,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="app1" translatesAutoresizingMaskIntoConstraints="NO" id="BUn-fs-eJK">
-                                <rect key="frame" x="54" y="68" width="212" height="432"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="BUn-fs-eJK" secondAttribute="height" multiplier="62:127" id="DZL-eq-weS"/>
-                                </constraints>
-                            </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ye1-oU-Zl3">
                                 <rect key="frame" x="0.0" y="398" width="320" height="170"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NOQ-bP-WhR">
@@ -613,6 +637,12 @@
                                     <action selector="nextClicked:" destination="A1i-di-uSe" eventType="touchUpInside" id="mVB-zw-tnf"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="app1" translatesAutoresizingMaskIntoConstraints="NO" id="BUn-fs-eJK">
+                                <rect key="frame" x="54" y="68" width="212" height="432"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BUn-fs-eJK" secondAttribute="height" multiplier="62:127" id="DZL-eq-weS"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20784313730000001" green="0.25490196079999999" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
