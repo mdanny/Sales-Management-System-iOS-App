@@ -21,9 +21,6 @@ class WalkthroughViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     
     
-    
-    
-    
     // MARK: - Data model for each walkthrough screen
     var index = 0               // the current page index
     var headerText = ""
@@ -82,6 +79,7 @@ class WalkthroughViewController: UIViewController {
         let pageViewController = self.parentViewController as! PageViewController
         pageViewController.nextPageWithIndex(index)
     }
+    
     
 
 }

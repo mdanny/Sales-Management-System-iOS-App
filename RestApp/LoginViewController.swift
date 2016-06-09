@@ -14,10 +14,9 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var loginButtonLabel: UIButton!
-    
-    @IBOutlet weak var registerButtonLabel: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signupButton: UIButton!
     
     var responseContainer: NSHTTPURLResponse?
     var accountData: AnyObject?
@@ -26,25 +25,21 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
-//    override func viewDidAppear(animated: Bool) {
-//        displayWalkthroughs()
-//    }
-    
-//    func displayWalkthroughs() {
-//        let userDefaults = NSUserDefaults.standardUserDefaults()
-//        let displayedWalkthrough = userDefaults.boolForKey("DisplayedWalkthrough")
-//        
-//        if !displayedWalkthrough {
-//            if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("PageViewController") {
-//                self.presentViewController(pageViewController, animated: true, completion: nil)
-//            }
-//        }
-//        
-//    }
-    
-    @IBAction func registerButtonTapped(sender: AnyObject) {
-        self.performSegueWithIdentifier("ShowRegisterViewSegue", sender: self)
+    override func viewDidAppear(animated: Bool) {
+        displayWalkthroughs()
     }
+    
+    func displayWalkthroughs() {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let displayedWalkthrough = userDefaults.boolForKey("DisplayedWalkthrough")
+        
+        if !displayedWalkthrough {
+            if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("PageViewController") {
+                self.presentViewController(pageViewController, animated: true, completion: nil)
+            }
+        }
+    }
+    
     
     
     @IBAction func loginButtonTapped(sender: UIButton) {
@@ -89,12 +84,12 @@ class LoginViewController: UIViewController {
             
             pvc.user = self.accountData!
         }
-        
-//        if segue.identifier == "ShowRegisterViewSegue" {
-//            let alertControllerRegister = UIAlertController(title: "Redirecting to registration page", message:"Complete the steps to create an account" , preferredStyle: .ActionSheet)
-//            alertControllerRegister.addAction(UIAlertAction(title: "Continue", style: .Default, handler: self))
-//            presentViewController(alertControllerRegister, animated: true, completion: nil)
+//        else if segue.identifier == "ShowSignupSegue" {
+//            let nav = segue.destinationViewController as! UINavigationController
+//            nav.topViewController as! SignupViewController
 //        }
     }
-
+    
+    
+    
 }

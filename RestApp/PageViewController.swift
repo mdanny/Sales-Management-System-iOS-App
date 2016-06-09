@@ -12,9 +12,9 @@ class PageViewController: UIPageViewController {
 
     
     // Some hard-coded data for our walkthrough screens
-    var pageHeaders = ["Learn to Design iOS Apps", "Create Prototypes", "Develop Animation", "Social Networks with Parse"]
+    var pageHeaders = ["Learn to shop in a new way!", "Scan Products off the shelf", "Pay with your credit card", "Make your account"]
     var pageImages = ["app1", "app2", "app3", "app4"]
-    var pageDescriptions = ["Learn to design the world's most beautiful iOS apps without having to hire a designer.", "Validate your app idea by creating a prototype before implementation", "Delight your users with stunning animation and transition", "Connect people together!"]
+    var pageDescriptions = ["Enhance your shopping experience!", "Be more responsible! Manage your expenses in a smarter way!", "Don't spend time in queues while checkouting!", "Be smarter and more efficient!"]
     
     // make the status bar white (light content)
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

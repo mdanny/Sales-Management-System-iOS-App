@@ -24,6 +24,7 @@
 		EA1342F41CC8FEC30063B91C /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F31CC8FEC30063B91C /* QRViewController.swift */; };
 		EA1342F61CCB963C0063B91C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1342F51CCB963C0063B91C /* LoginViewController.swift */; };
 		EA3213C91CEA6D9400BEE415 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3213C81CEA6D9400BEE415 /* CustomCell.swift */; };
+		EA3FBA3A1D09D78600D72000 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3FBA391D09D78600D72000 /* User.swift */; };
 		EA84B5D61CE3BB66001967AF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA84B5D51CE3BB66001967AF /* ProfileViewController.swift */; };
 		EA9BD3111D074F5900D5A65B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9BD3101D074F5900D5A65B /* SignupViewController.swift */; };
 		EAA001AA1CFAD73F009293B5 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA001A91CFAD73F009293B5 /* PageViewController.swift */; };
@@ -53,6 +54,7 @@
 		EA1342F31CC8FEC30063B91C /* QRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		EA1342F51CCB963C0063B91C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA3213C81CEA6D9400BEE415 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		EA3FBA391D09D78600D72000 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EA84B5D51CE3BB66001967AF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EA9BD3101D074F5900D5A65B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		EAA001A91CFAD73F009293B5 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				EA1342F51CCB963C0063B91C /* LoginViewController.swift */,
 				EAA00C1E1CD5D2A300323194 /* RestApp-Bridging-Header.h */,
 				EA1342F31CC8FEC30063B91C /* QRViewController.swift */,
+				EA3FBA391D09D78600D72000 /* User.swift */,
 				EA1342DD1CC8150A0063B91C /* AppDelegate.swift */,
 				EA1342DF1CC8150A0063B91C /* ViewController.swift */,
 				EA84B5D51CE3BB66001967AF /* ProfileViewController.swift */,
@@ -167,7 +170,6 @@
 				EA3213C81CEA6D9400BEE415 /* CustomCell.swift */,
 				EAB7C8DF1CEE4F1C002EE2A2 /* RegistrationViewController */,
 				EA1342E11CC8150A0063B91C /* Main.storyboard */,
-				EA9BD3101D074F5900D5A65B /* SignupViewController.swift */,
 				EA1342E41CC8150A0063B91C /* Assets.xcassets */,
 				EA1342E61CC8150A0063B91C /* LaunchScreen.storyboard */,
 				EA1342E91CC8150A0063B91C /* Info.plist */,
@@ -180,6 +182,7 @@
 			children = (
 				EAA001A91CFAD73F009293B5 /* PageViewController.swift */,
 				EAA001AB1CFAD77F009293B5 /* WalkthroughViewController.swift */,
+				EA9BD3101D074F5900D5A65B /* SignupViewController.swift */,
 			);
 			name = RegistrationViewController;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				EAA001AC1CFAD77F009293B5 /* WalkthroughViewController.swift in Sources */,
 				EAA00C201CD5E42E00323194 /* PayViewController.swift in Sources */,
 				EA1342DE1CC8150A0063B91C /* AppDelegate.swift in Sources */,
+				EA3FBA3A1D09D78600D72000 /* User.swift in Sources */,
 				EA84B5D61CE3BB66001967AF /* ProfileViewController.swift in Sources */,
 				EA0B980B1CE532A10034E3A7 /* ContentCollectionViewCell.swift in Sources */,
 				EA1342F21CC8EF3F0063B91C /* AddViewController.swift in Sources */,
