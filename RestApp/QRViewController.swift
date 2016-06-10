@@ -61,14 +61,8 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     var infoString = ""
     var parsedString: String?
     
-    // API variables
-    var apiName: String?
-    var apiCategory: String?
-    var apiBrand: String?
-    var apiSupermarket: String?
-    var apiDescription: String?
-    var apiPrice: Double?
-    var apiId: String?
+    // Product instance holds the product model
+    var product = Product()
     
     
     override func viewDidLoad() {
@@ -125,7 +119,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         
         // Bring any subview to front view, in reverse order
         self.view.bringSubviewToFront(lblQRCodeResult)
-        self.view.bringSubviewToFront(lblQRCodeLabel)
+//        self.view.bringSubviewToFront(lblQRCodeLabel)
         self.view.bringSubviewToFront(buttonLabel)
         self.view.bringSubviewToFront(postButton)
         self.view.bringSubviewToFront(payButton)
@@ -163,28 +157,40 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     
   
     @IBAction func buttonTapped(sender: UIButton) {
+        
         if !self.infoString.isEmpty {
             let jsonString = self.infoString
             let json: AnyObject? = jsonString.parseJSONString
-            let parsedJSON = json! as! NSDictionary
-            
-            print("---------PARSED JSON FROM QRViewController:---------- \(parsedJSON)")
-            // Define the constants for API POST request
-            self.apiName = parsedJSON.valueForKey("name") as? String
-            self.apiCategory = parsedJSON.valueForKey("category") as? String
-            self.apiBrand = parsedJSON.valueForKey("brand") as? String
-            self.apiSupermarket = parsedJSON.valueForKey("supermarket") as? String
-            self.apiDescription = parsedJSON.valueForKey("description") as? String
-            self.apiPrice = parsedJSON.valueForKey("price") as? Double
-            self.apiId = parsedJSON.valueForKey("_id") as? String
-            
-            let alertControllerSuccess = UIAlertController(title: "Cart", message:"Your item is: \(parsedJSON)\n" , preferredStyle: .Alert)
-            alertControllerSuccess.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
-            presentViewController(alertControllerSuccess, animated: true, completion: nil)
+            if let parsedJSON = json! as? NSDictionary {
+                let nameSchema = (parsedJSON.valueForKey("name") as? String)!
+                let categorySchema = (parsedJSON.valueForKey("category") as? String)!
+                let brandSchema = (parsedJSON.valueForKey("brand") as? String)!
+                let supermarketSchema = (parsedJSON.valueForKey("supermarket") as? String)!
+                let descriptionSchema = (parsedJSON.valueForKey("description") as? String)!
+                let priceSchema = (parsedJSON.valueForKey("price") as? Double)!
+                let idSchema = (parsedJSON.valueForKey("_id") as? String)!
+                // Define the constants for API POST request
+                product.name = nameSchema ?? "name"
+                product.category = categorySchema ?? "category"
+                product.brand = brandSchema ?? "brand"
+                product.supermarket = supermarketSchema ?? "supermarket"
+                product.description = descriptionSchema ?? "description"
+                product.price = priceSchema ?? 100
+                product.id = idSchema ?? "id"
+                
+                let alertControllerSuccess = UIAlertController(title: "Product info", message:"Your item is: \(parsedJSON)\n" , preferredStyle: .Alert)
+                alertControllerSuccess.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
+                presentViewController(alertControllerSuccess, animated: true, completion: nil)
+            }
+            else {
+                let alertControllerFailure = UIAlertController(title: "Product info", message:"Your item is:  \n The product doesn't comply with our schema" , preferredStyle: .Alert)
+                alertControllerFailure.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
+                presentViewController(alertControllerFailure, animated: true, completion: nil)
+            }
         }
         else {
-            Alamofire.request(.GET, "http://46.101.104.55:3000/cart")
-            let alertControllerFailure = UIAlertController(title: "Cart", message:"Your item is:  \n You have no items in the cart." , preferredStyle: .Alert)
+            
+            let alertControllerFailure = UIAlertController(title: "Product info", message:"Your item is:  \n You have not scanned a product yet" , preferredStyle: .Alert)
             alertControllerFailure.addAction(UIAlertAction(title: "Continue", style: .Default, handler: continueScanning))
             presentViewController(alertControllerFailure, animated: true, completion: nil)
         }
@@ -203,14 +209,8 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "ShowAddViewSegue" {
             let addViewController = segue.destinationViewController as! AddViewController
-            
-            addViewController.apiName = self.apiName
-            addViewController.apiCategory = self.apiCategory
-            addViewController.apiBrand = self.apiBrand
-            addViewController.apiSupermarket = self.apiSupermarket
-            addViewController.apiDescription = self.apiDescription
-            addViewController.apiPrice = self.apiPrice
-            addViewController.apiId = self.apiId
+
+            addViewController.fetchedProduct = self.product
         }
     }
     

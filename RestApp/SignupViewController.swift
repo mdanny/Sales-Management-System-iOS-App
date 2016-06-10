@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UITextFieldDelegate {
 
     var textFields: [UITextField]!
     
@@ -26,24 +26,12 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         textFields = [nameTextField, emailTextField, passwordTextField]
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        let arrayOfTextFields = textFields as NSArray
-        let arrayIndex = arrayOfTextFields.indexOfObject(textField)
-        
-        if arrayIndex < arrayOfTextFields.count - 1 {
-            let newTextField = arrayOfTextFields[arrayIndex + 1] as! UITextField
-            let doneTextField = arrayOfTextFields[arrayIndex] as! UITextField
-            newTextField.becomeFirstResponder()
-            doneTextField.backgroundColor = UIColor.greenColor()
-        } else {
-            textField.resignFirstResponder()
-            textField.backgroundColor = UIColor.greenColor()
-        }
-        return true
-    }
     
     @IBAction func sliderValueChanged(sender: AnyObject) {
         yearSliderLabel.text = "\(Int(yearSlider.value))"
@@ -98,5 +86,21 @@ class SignupViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
         }
     
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        let arrayOfTextFields = textFields as NSArray
+        let arrayIndex = arrayOfTextFields.indexOfObject(textField)
+        
+        if arrayIndex < arrayOfTextFields.count - 1 {
+            let newTextField = arrayOfTextFields[arrayIndex + 1] as! UITextField
+            let doneTextField = arrayOfTextFields[arrayIndex] as! UITextField
+            newTextField.becomeFirstResponder()
+            doneTextField.backgroundColor = UIColor.greenColor()
+        } else {
+            textField.resignFirstResponder()
+            textField.backgroundColor = UIColor.greenColor()
+        }
+        return true
     }
 }

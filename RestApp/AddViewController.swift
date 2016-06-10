@@ -14,14 +14,15 @@ class AddViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextField!
     
-    var apiName: String?
-    var apiCategory: String?
-    var apiBrand: String?
-    var apiSupermarket: String?
-    var apiDescription: String?
-    var apiPrice: Double?
-    var apiId: String?
+//    var apiName: String?
+//    var apiCategory: String?
+//    var apiBrand: String?
+//    var apiSupermarket: String?
+//    var apiDescription: String?
+//    var apiPrice: Double?
+//    var apiId: String?
 
+    var fetchedProduct = Product()
 
 //    @IBAction func buttonTapped(sender: UIButton) {
 //        print("Name: \(self.apiName)")
@@ -37,8 +38,8 @@ class AddViewController: UIViewController {
         print("The segue is working!")
         
             print("There are no products in the cart --- Please make sure you add products in the cart.")
-        if let productId = self.apiId {
-            if let productPrice = self.apiPrice {
+        if let productId = fetchedProduct.id {
+            if let productPrice = fetchedProduct.price {
                 Alamofire.request(.POST, URL, parameters: ["product_id": productId, "priceValue": productPrice, "quantity": "1"])
                 print("-------------\n")
                 print("Operation has been done")
