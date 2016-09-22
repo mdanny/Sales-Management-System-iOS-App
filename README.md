@@ -1,2 +1,1 @@
-# iOS Sales Management System
-Smart shop iOS app 
+# iOS Sales Management App
